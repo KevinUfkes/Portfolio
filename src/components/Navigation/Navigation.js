@@ -7,7 +7,7 @@ function Navigation() {
         <h1>Navigation</h1>
             <ul>
                 <li>
-                    <a href='/'>Home - Kevin Ufkes</a>
+                    <a href='/'>Home - Kevin Ufkes Portfolio</a>
                 </li>
                 <li>
                     <a href='/projects'>Projects</a>    
