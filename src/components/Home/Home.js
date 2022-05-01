@@ -1,10 +1,10 @@
 import './Home.css'
+import React from 'react'
 
 function Home() {
     return (
       <div className="App">
-        <h1>Kevin Ufkes</h1>
-        <a href=''>Projects</a>
+        <h1>Home</h1>
       </div>
     );
 }
