@@ -4,7 +4,7 @@ import React from 'react'
 function Navigation() {
     return (
       <div className="App">
-        <h1>Navigation</h1>
+        <h1>Navigation Function</h1>
             <ul>
                 <li>
                     <a href='/'>Home</a>
