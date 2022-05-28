@@ -84,9 +84,6 @@ function MarqueeZone() {
             </marquee>
             <hr></hr>
 
-
-
-
       </div>
     );
 }
