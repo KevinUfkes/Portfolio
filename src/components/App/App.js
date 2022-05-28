@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navigation from './../Navigation/Navigation.js'
 import Home from './../Home/Home.js'
 import Projects from './../Projects/Projects.js'
+import MarqueeZone from '../MarqueeZone/MarqueeZone.js';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/projects" element={ <Projects/> }/>
+          <Route path="/marquee-zone" element={ <MarqueeZone/> }/>
           <Route path="/" element={ <Home/> }/>
         </Routes>
       </Router>
