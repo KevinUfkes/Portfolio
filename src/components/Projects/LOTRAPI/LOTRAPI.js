@@ -1,13 +1,15 @@
 import './LOTRAPI.css'
+import 'bootstrap/dist/css/bootstrap.css';
+import Table from 'react-bootstrap/Table'
+import Button from 'react-bootstrap/Button'
 import React, { useEffect, useState } from 'react'
 import Navigation from '../../Navigation/Navigation';
 import axios from 'axios';
 
 function LOTRAPI() {
-    // {get_all_characters()}
-
+    
     const [characters, setCharacters] = useState([])
-
+    
     useEffect(() => {
         axios({
             method: 'GET',
@@ -19,7 +21,7 @@ function LOTRAPI() {
             console.log(response.data.docs)
             setCharacters(response.data.docs)
         })
-    })
+    }, [])
 
     return (
         <>
@@ -27,27 +29,44 @@ function LOTRAPI() {
                 <Navigation 
                     bg = "dark"
                     expand = "sm"
-                    title = {["Projects", "/projects"]}
+                    title = {["Projects", "/projects"]}xxx
                     links = {[
                         ["Lord of the Rings API", "/projects/lotr-api"], 
                     ]}
                 />
                 <h1>Lord of the Rings API</h1>   
                 <div className="container">
-                    <table>
-                        <tr>
-                            <th>Name</th>
-                            <th>Race</th>
-                        </tr>
-                        {characters.map((character) => 
-                            <>
-                                <tr>
-                                    <td>{character["name"]}</td>
-                                    <td>{character.race}</td>
-                                </tr>
-                            </>   
-                        )}
-                    </table>
+                    <div className="row">
+                        <div className="col col-xxl-3 inputs">
+                            <Button>Characters</Button>
+                        </div>
+                        <div className="col col-xxl-9">
+                            <Table striped bordered>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Race</th>
+                                        <th>Gender</th>
+                                        <th>Birth</th>
+                                        <th>Death</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {characters.map((character) => 
+                                        <>
+                                            <tr>
+                                                <td>{character["name"]}</td>
+                                                <td>{character.race}</td>
+                                                <td>{character.gender}</td>
+                                                <td>{character.birth}</td>
+                                                <td>{character.death}</td>
+                                            </tr>
+                                        </>   
+                                    )}
+                                </tbody>
+                            </Table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
