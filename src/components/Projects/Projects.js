@@ -11,6 +11,7 @@ function Projects() {
             title = {["Projects", "/projects"]}
             links = {[
               ["Lord of the Rings API", "/projects/lotr-api"], 
+              ["Finite-State Machine", "/projects/fsm"]
             ]}
           />
           <h1>Projects</h1>
