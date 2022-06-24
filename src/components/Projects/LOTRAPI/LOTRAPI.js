@@ -18,7 +18,7 @@ function LOTRAPI() {
                 'Authorization': 'Bearer aMBYfyc0HcqUwNtRG8BV'
             }
         }).then((response) => {
-            console.log(response.data.docs)
+            // console.log(response.data.docs)
             setCharacters(response.data.docs)
         })
     }, [])
@@ -72,17 +72,5 @@ function LOTRAPI() {
         </>
     );
 }
-
-// function get_all_characters(){
-//     axios({
-//         method: 'GET',
-//         url: 'https://the-one-api.dev/v2/character',
-//         headers: {
-//             'Authorization': 'Bearer aMBYfyc0HcqUwNtRG8BV'
-//         }
-//     }).then((response) => {
-//         console.log(response)
-//     })
-// };
 
 export default LOTRAPI;
