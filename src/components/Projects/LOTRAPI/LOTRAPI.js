@@ -26,14 +26,14 @@ function LOTRAPI() {
     return (
         <>
             <div className="App"> 
-                <Navigation 
+                {/* <Navigation 
                     bg = "dark"
                     expand = "sm"
-                    title = {["Projects", "/projects"]}xxx
+                    title = {["Projects", "/projects"]}
                     links = {[
                         ["Lord of the Rings API", "/projects/lotr-api"], 
                     ]}
-                />
+                /> */}
                 <h1>Lord of the Rings API</h1>   
                 <div className="container">
                     <div className="row">
