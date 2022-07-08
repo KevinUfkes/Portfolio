@@ -6,7 +6,7 @@ import Home from './../Home/Home.js';
 import About from './../About/About.js';
 import Projects from './../Projects/Projects.js';
 import LOTRAPI from './../Projects/LOTRAPI/LOTRAPI.js';
-import FSM from './../Projects/FiniteStateMachine/FSM.js';
+import CreditCard from './../Projects/CreditCard/CreditCard.js';
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
             <Route path="/about" element={<About/>}/>
             <Route path="/projects" element={ <Projects/> }/>
             <Route path="/projects/lotr-api" element={<LOTRAPI/>}/>
-            <Route path="/projects/fsm" element={<FSM/>}/>
+            <Route path="/projects/credit-card" element={<CreditCard/>}/>
             <Route path="/" element={ <Home/> }/>
           </Routes>
         </Router>
