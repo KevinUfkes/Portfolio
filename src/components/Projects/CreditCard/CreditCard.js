@@ -4,7 +4,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Visa_L from './../../../images/visa-lg.png';
+import Mastercard_S from './../../../images/mastercard-sm.png';
+import Visa_S from './../../../images/visa-sm.png';
+import Mastercard_L from './../../../images/mastercard-lg.png';
+
 
 
 
@@ -41,10 +47,10 @@ function CreditCard () {
     useEffect(() => {
         (name!='' && nameRegex.test(name)) ? setNameIsValid(true) : setNameIsValid(false);
 
-        if(cardNum[0]===4){
+        if(cardNum[0]==4){
             setIsVisa(true);
             setIsMastercard(false);
-        } else if(cardNum[0]===5){
+        } else if(cardNum[0]==5){
             setIsMastercard(true);
             setIsVisa(false);
         } else{
@@ -52,7 +58,7 @@ function CreditCard () {
             setIsMastercard(false);
         }
 
-        ((cardNum!=='' && cardNum.length===16) && ((isVisa && !isMastercard) || (isMastercard && !isVisa))) ? setCardNumIsValid(true) : setCardNumIsValid(false);
+        ((cardNum!='' && cardNum.length==16) && ((isVisa && !isMastercard) || (isMastercard && !isVisa))) ? setCardNumIsValid(true) : setCardNumIsValid(false);
 
         ((month!=='') && ((month>currentMonth && year>=currentYear) || (month<=currentMonth && year>currentYear))) ? setMonthIsValid(true) : setMonthIsValid(false);
         (year>=currentYear && year !=='') ? setYearIsValid(true) : setYearIsValid(false);
@@ -66,14 +72,35 @@ function CreditCard () {
             <h1>Credit Card Validation</h1>
             <hr></hr>
             <Container fluid>
-            <h3>Payment</h3>
-                <Row className="justify-content-center">
-                    <Col sm={{span: 12}} md={{span:7}} lg={{span:6}} xl={{span:5}} xxl={{span:4}}>
+                <h3>Payment</h3>
+                <Row className="justify-content-md-center">
+                    <Col sm={{span: 12}} md={{span:8}} lg={{span:6}} xl={{span:5}} xxl={{span:4}}>
                         <Card>
                             <Card.Header>
                                 <Row className='justify-content-left'>
                                     <p>We only accept Master and Visa</p>
                                 </Row>    
+                                <Row>
+                                    <Col className='card-img'>
+                                        {!isMastercard &&
+                                            <img src={Mastercard_S} width="52.42px" height="37px"></img>
+                                        }
+
+                                        {isMastercard &&
+                                            <img src={Mastercard_L} width="80px" height="60px"></img>
+                                        }
+
+                                    {/* </Col>
+                                    <Col> */}
+                                        {!isVisa && 
+                                            <img src={Visa_S} width="52.42px" height="37px"></img>
+                                        }
+                                    
+                                        {isVisa &&
+                                            <img src={Visa_L} width="80px" height="60px"></img>
+                                        }
+                                    </Col>
+                                </Row>
                             </Card.Header>   
                             <Card.Body>
                                  
@@ -159,27 +186,50 @@ function CreditCard () {
                                                 </Row>
                                             </Col>
                                         </Row>
-                                        <br></br>
-                                        <Row>
-                                            <Col sm={{span:4, offset:2}}>
-                                                <Form.Control type="button" value="Back"></Form.Control>
-                                            </Col>
-                                            <Col sm={4}>
-                                                <Form.Control type='submit' value="Submit" placeholder='disabled'></Form.Control>
-                                            </Col>
-                                        </Row>
+                                        
                                     </Form>
                                 </Container>
                             </Card.Body>  
                         </Card>
+                        <Container>
+                            <Row>
+                                <Col sm={{span:4, offset:2}}>
+                                    <Button className='back'
+                                        type="button"
+                                    >Back</Button>
+                                    
+                                </Col>
+                                <Col sm={4}>
+                                    <Button 
+                                        type='submit'
+                                        disabled={(formIsValid) ? false : true}
+                                    >Continue</Button>
+                                </Col>
+                            </Row>
+                        </Container>
                     </Col>
                 </Row> 
             </Container>
 
-            {/* <p>Current Year: {currentYear}</p>
-            <p>Current Month: {currentMonth}</p> */}
-
             <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+
             <p> Is Visa: 
                 {isVisa && <p>True</p>}
                 {!isVisa && <p>False</p>}
