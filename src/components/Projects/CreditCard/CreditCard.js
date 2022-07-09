@@ -8,27 +8,54 @@ import Form from 'react-bootstrap/Form';
 
 
 function CreditCard () {
+    const currentYear = new Date().getFullYear()
+    const currentMonth = new Date().getMonth()
 
+    const nameRegex = new RegExp('^[A-Za-z][A-Za-z ]*[A-Za-z]$')
+    const securityNumRegex = new RegExp('^[A-Za-z0-9]{3}$')
+
+    // Credit Card form fields
     const [name, setName] = useState('');
     const [cardNum, setCardNum] = useState('');
     const [month, setMonth] = useState('');
     const [year, setYear] = useState('');
     const [securityNum, setSecurityNum] = useState('');
 
+    // Validation of Credit Card form fields
     const [nameIsValid, setNameIsValid] = useState(false);
     const [cardNumIsValid, setCardNumIsValid] = useState(false);
     const [monthIsValid, setMonthIsValid] = useState(false);
     const [yearIsValid, setYearIsValid] = useState(false);
     const [securityNumIsValid, setSecurityNumIsValid] = useState(false);
 
+    // Validation of Visa/Mastercard format
+    const [isVisa, setIsVisa] = useState(false);
+    const [isMastercard, setIsMastercard] = useState(false);
+
+    // Validation of Credit Card form
     const [formIsValid, setFormIsValid] = useState(false);
 
+    
+
     useEffect(() => {
-        (name=='ddd') ? setNameIsValid(true) : setNameIsValid(false);
-        (cardNum==123) ? setCardNumIsValid(true) : setCardNumIsValid(false);
-        (month=='feb') ? setMonthIsValid(true) : setMonthIsValid(false);
-        (year=='2035') ? setYearIsValid(true) : setYearIsValid(false);
-        (securityNum==987) ? setSecurityNumIsValid(true) : setSecurityNumIsValid(false);
+        (name!='' && nameRegex.test(name)) ? setNameIsValid(true) : setNameIsValid(false);
+
+        if(cardNum[0]==4){
+            setIsVisa(true);
+            setIsMastercard(false);
+        } else if(cardNum[0]==5){
+            setIsMastercard(true);
+            setIsVisa(false);
+        } else{
+            setIsVisa(false);
+            setIsMastercard(false);
+        }
+
+        ((cardNum!='' && cardNum.length==16) && ((isVisa && !isMastercard) || (isMastercard && !isVisa))) ? setCardNumIsValid(true) : setCardNumIsValid(false);
+
+        ((month!='') && ((month>currentMonth && year>=currentYear) || (month<=currentMonth && year>currentYear))) ? setMonthIsValid(true) : setMonthIsValid(false);
+        (year>=currentYear && year !='') ? setYearIsValid(true) : setYearIsValid(false);
+        (securityNum!='' && securityNumRegex.test(securityNum)) ? setSecurityNumIsValid(true) : setSecurityNumIsValid(false);
 
         (nameIsValid && cardNumIsValid && monthIsValid && yearIsValid && securityNumIsValid) ? setFormIsValid(true) : setFormIsValid(false)
     })
@@ -38,20 +65,30 @@ function CreditCard () {
             <Container>
                 <Row>
                     <h1>Credit Card Validation</h1>
+                    <p>Current Year: {currentYear}</p>
+                    <p>Current Month: {currentMonth}</p>
                 </Row>
                 <br></br>
                 <Row>
                     <Col>
                         <h3>Payment</h3>
-
                         <p>We only accept Master and Visa</p>
+
+                        <p> Is Visa: 
+                            {isVisa && <p>True</p>}
+                            {!isVisa && <p>False</p>}
+                        </p>
+                        <p> Is Mastercard: 
+                            {isMastercard && <p>True</p>}
+                            {!isMastercard && <p>False</p>}
+                        </p>
                         <Container>
                             <Form>
                                 <Row>
                                     <Col>
                                         <Form.Label>
                                             Name on Card
-                                            <Form.Control type='text' name='name' value={name} onChange={event => setName(event.target.value)}></Form.Control>
+                                            <Form.Control type='text' name='name' value={name} isValid={nameIsValid} onChange={event => setName(event.target.value)}></Form.Control>
                                         </Form.Label>
                                     </Col>
                                 </Row>
@@ -59,7 +96,7 @@ function CreditCard () {
                                     <Col>
                                         <Form.Label>
                                             Card Number
-                                            <Form.Control type='number' name='cardNum' value={cardNum} onChange={event => setCardNum(event.target.value)}></Form.Control>
+                                            <Form.Control type='number' name='cardNum' value={cardNum} isValid={cardNumIsValid} onChange={event => setCardNum(event.target.value)}></Form.Control>
                                         </Form.Label>
                                     </Col>
                                 </Row>
@@ -67,28 +104,29 @@ function CreditCard () {
                                     <Col>
                                         <Form.Label>
                                             <br></br>
-                                            <Form.Select name='month' value={month} onChange={event => setMonth(event.target.value)}>
+                                            <Form.Select name='month' value={month} isValid={monthIsValid} onChange={event => setMonth(event.target.value)}>
                                                 <option value=''>Month</option>
-                                                <option value='jan'>Jan</option>
-                                                <option value='feb'>Feb</option>
-                                                <option value='mar'>Mar</option>
-                                                <option value='apr'>Apr</option>
-                                                <option value='may'>May</option>
-                                                <option value='jun'>Jun</option>
-                                                <option value='jul'>Jul</option>
-                                                <option value='aug'>Aug</option>
-                                                <option value='sep'>Sep</option>
-                                                <option value='oct'>Oct</option>
-                                                <option value='nov'>Nov</option>
-                                                <option value='dec'>Dec</option>
+                                                <option value='0'>Jan</option>
+                                                <option value='1'>Feb</option>
+                                                <option value='2'>Mar</option>
+                                                <option value='3'>Apr</option>
+                                                <option value='4'>May</option>
+                                                <option value='5'>Jun</option>
+                                                <option value='6'>Jul</option>
+                                                <option value='7'>Aug</option>
+                                                <option value='8'>Sep</option>
+                                                <option value='9'>Oct</option>
+                                                <option value='10'>Nov</option>
+                                                <option value='11'>Dec</option>
                                             </Form.Select>
                                         </Form.Label>
                                     </Col>
                                     <Col>
                                         <Form.Label>
                                             <br></br>
-                                            <Form.Select name='year' value={year} onChange={event => [setYear(event.target.value)]}>
+                                            <Form.Select name='year' value={year} isValid={yearIsValid} onChange={event => [setYear(event.target.value)]}>
                                                 <option value=''>Year</option>
+                                                <option value='2021'>2021</option>
                                                 <option value='2022'>2022</option>
                                                 <option value='2023'>2023</option>
                                                 <option value='2024'>2024</option>
@@ -116,7 +154,7 @@ function CreditCard () {
                                     <Col>
                                         <Form.Label>
                                             CSC/CVV
-                                            <Form.Control type='number' name='securityNum' value={securityNum} onChange={event => {setSecurityNum(event.target.value)}}></Form.Control>
+                                            <Form.Control type='text' name='securityNum' value={securityNum} isValid={securityNumIsValid} onChange={event => {setSecurityNum(event.target.value)}}></Form.Control>
                                         </Form.Label>
                                     </Col>
                                 </Row>
