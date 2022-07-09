@@ -1,19 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CreditCard.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import Dropdown from 'react-bootstrap/Dropdown';
+
 
 
 function CreditCard () {
 
     const [name, setName] = useState('');
-    const [cardNum, setCardNum] = useState();
-    const [month, setMonth] = useState();
-    const [year, setYear] = useState();
-    const [securityNum, setSecurityNum] = useState();
+    const [cardNum, setCardNum] = useState('');
+    const [month, setMonth] = useState('');
+    const [year, setYear] = useState('');
+    const [securityNum, setSecurityNum] = useState('');
+
+    const [nameIsValid, setNameIsValid] = useState(false);
+    const [cardNumIsValid, setCardNumIsValid] = useState(false);
+    const [monthIsValid, setMonthIsValid] = useState(false);
+    const [yearIsValid, setYearIsValid] = useState(false);
+    const [securityNumIsValid, setSecurityNumIsValid] = useState(false);
+
+    const [formIsValid, setFormIsValid] = useState(false);
+
+    useEffect(() => {
+        (name=='ddd') ? setNameIsValid(true) : setNameIsValid(false);
+        (cardNum==123) ? setCardNumIsValid(true) : setCardNumIsValid(false);
+        (month=='feb') ? setMonthIsValid(true) : setMonthIsValid(false);
+        (year=='2035') ? setYearIsValid(true) : setYearIsValid(false);
+        (securityNum==987) ? setSecurityNumIsValid(true) : setSecurityNumIsValid(false);
+
+        (nameIsValid && cardNumIsValid && monthIsValid && yearIsValid && securityNumIsValid) ? setFormIsValid(true) : setFormIsValid(false)
+    })
 
     return (
         <>
@@ -21,9 +39,6 @@ function CreditCard () {
                 <Row>
                     <h1>Credit Card Validation</h1>
                 </Row>
-                <br></br>
-                <br></br>
-                <br></br>
                 <br></br>
                 <Row>
                     <Col>
@@ -72,7 +87,7 @@ function CreditCard () {
                                     <Col>
                                         <Form.Label>
                                             <br></br>
-                                            <Form.Select name='year' value={year} onChange={event => setYear(event.target.value)}>
+                                            <Form.Select name='year' value={year} onChange={event => [setYear(event.target.value)]}>
                                                 <option value=''>Year</option>
                                                 <option value='2022'>2022</option>
                                                 <option value='2023'>2023</option>
@@ -122,6 +137,37 @@ function CreditCard () {
             <p>Year: {year}</p>
             <p>CSC/CVV: {securityNum}</p>
 
+
+            <hr></hr>
+            <p> Name Valid: 
+                {nameIsValid && <p>True</p>}
+                {!nameIsValid && <p>False</p>}
+            </p>
+
+            <p> Card Number Valid: 
+                {cardNumIsValid && <p>True</p>}
+                {!cardNumIsValid && <p>False</p>}
+            </p>
+
+            <p> Month Valid: 
+                {monthIsValid && <p>True</p>}
+                {!monthIsValid && <p>False</p>}
+            </p>
+
+            <p> Year Valid: 
+                {yearIsValid && <p>True</p>}
+                {!yearIsValid && <p>False</p>}
+            </p>
+
+            <p> Security Number Valid: 
+                {securityNumIsValid && <p>True</p>}
+                {!securityNumIsValid && <p>False</p>}
+            </p>
+
+            <p> Form Valid: 
+                {formIsValid && <p>True</p>}
+                {!formIsValid && <p>False</p>}
+            </p>
 
         </>
     )
