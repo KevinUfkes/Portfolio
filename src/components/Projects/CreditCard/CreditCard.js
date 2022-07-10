@@ -12,11 +12,15 @@ import Visa_L from './../../../images/visa-lg.png';
 import Mastercard_S from './../../../images/mastercard-sm.png';
 import Visa_S from './../../../images/visa-sm.png';
 import Mastercard_L from './../../../images/mastercard-lg.png';
+import "@fontsource/roboto";
+import "lato-font"
 
 function CreditCard () {
+    // Get current year/month for credit card expiry date validation
     const currentYear = new Date().getFullYear()
     const currentMonth = new Date().getMonth()
 
+    // Regular expressions for input validation
     const nameRegex = new RegExp('^[A-Za-z][A-Za-z ]*[A-Za-z]$')
     const securityNumRegex = new RegExp('^[A-Za-z0-9]{3}$')
 
@@ -43,6 +47,7 @@ function CreditCard () {
     const [yearIsValid, setYearIsValid] = useState(false);
     const [securityNumIsValid, setSecurityNumIsValid] = useState(false);
 
+    // Detect if field has been visted. Only provide validation feeback after visitation.
     const [nameChange, setNameChange] = useState(false);
     const [cardNumChange, setcardNumChange] = useState(false);
     const [monthChange, setMonthChange] = useState(false);
@@ -50,8 +55,10 @@ function CreditCard () {
     const [securityNumChange, setSecurityNumChange] = useState(false);
 
     useEffect(() => {
+        // Validation of name
         (name!='' && nameRegex.test(name)) ? setNameIsValid(true) : setNameIsValid(false);
 
+        // Validation of first number of card. Visa or Mastercard
         if(cardNum[0]==4){
             setIsVisa(true);
             setIsMastercard(false);
@@ -63,12 +70,19 @@ function CreditCard () {
             setIsMastercard(false);
         }
 
+        // Validate credit card number length. Validate card is only Visa or Mastercard
         ((cardNum!='' && cardNum.length==16) && ((isVisa && !isMastercard) || (isMastercard && !isVisa))) ? setCardNumIsValid(true) : setCardNumIsValid(false);
 
+        // Validate Month has been selected
         ((month!='month')) ? setMonthIsValid(true) : setMonthIsValid(false);
+
+        // Validate Year has been selected and indicates future date in conjuction with month input
         (year !='' && ((month>currentMonth && year>=currentYear) || (month<=currentMonth && year>currentYear))) ? setYearIsValid(true) : setYearIsValid(false);
+
+        // Validate CSC/CVV number is present and 3 characters long
         (securityNum!='' && securityNumRegex.test(securityNum)) ? setSecurityNumIsValid(true) : setSecurityNumIsValid(false);
 
+        // Set form to valid if all inputs are valid. 
         (nameIsValid && cardNumIsValid && monthIsValid && yearIsValid && securityNumIsValid) ? setFormIsValid(true) : setFormIsValid(false)
     })
 
@@ -92,6 +106,8 @@ function CreditCard () {
                                     </Row>    
                                     <Row>
                                         <Col className='card-img'>
+
+                                            {/* Display large/small credit card image based on isVisa/isMastercard states */}
                                             {!isMastercard &&
                                                 <img src={Mastercard_S} width="52.42px" height="37px"></img>
                                             }
@@ -162,7 +178,7 @@ function CreditCard () {
                                                                     onChange={event => setMonth(event.target.value)}
                                                                     onBlur={() => setMonthChange(true)}
                                                                 >
-                                                                    <option value='month'>Month<div className='required'></div></option>
+                                                                    <option value='month'>Month</option>
                                                                     <option value='0'>Jan</option>
                                                                     <option value='1'>Feb</option>
                                                                     <option value='2'>Mar</option>
@@ -195,8 +211,7 @@ function CreditCard () {
                                                                     onChange={event => [setYear(event.target.value)]}
                                                                     onBlur={() => setYearChange(true)}
                                                                 >
-                                                                    <option value=''><div className='required'>Year</div></option>
-                                                                    <option value='2021'>2021</option>
+                                                                    <option value=''>Year</option>                                                                  <option value='2021'>2021</option>
                                                                     <option value='2022'>2022</option>
                                                                     <option value='2023'>2023</option>
                                                                     <option value='2024'>2024</option>

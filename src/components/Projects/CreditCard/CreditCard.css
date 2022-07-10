@@ -24,6 +24,7 @@ h3{
     height: 30px;
     left: 24px;
     top: 121px;
+    font-size: 20px;
 }
 
 img{
@@ -56,13 +57,9 @@ img{
     padding-left: 40px;
 }
 
-.form-label{
-    text-align: left;
-    position: flex;
-}
-
 .form-label:invalid{
     border: red 1px solid;
+    image-rendering: unset;
 }
 
 .required{
@@ -76,12 +73,9 @@ img{
 }
 
 .required::after{
+    font-family: 'Roboto';
     content:"*" ;
     color:red   
-}
-option[selected]:after{
-    content:"*" ;
-    color:red 
 }
 
 .btn{
@@ -108,7 +102,7 @@ option[selected]:after{
 
 .back{
     background-color: white;
-    color: #4790A1;
+    color: #127C95;
     border: 1px solid #4790A1;
 
 }
@@ -121,5 +115,12 @@ option[selected]:after{
 .error-message{
     text-align: left;
     color: red;
+    font-family: 'Lato';
+    font-size: 12px;
+    line-height: 16px;
 }
 
+option{
+    font-size: 18px;
+    line-height: 18px;
+}
