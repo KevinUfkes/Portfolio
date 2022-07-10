@@ -5,8 +5,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import { Formik } from 'formik'
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Visa_L from './../../../images/visa-lg.png';
 import Mastercard_S from './../../../images/mastercard-sm.png';
@@ -16,6 +14,7 @@ import "@fontsource/roboto";
 import "lato-font"
 
 function CreditCard () {
+
     // Get current year/month for credit card expiry date validation
     const currentYear = new Date().getFullYear()
     const currentMonth = new Date().getMonth()
@@ -30,8 +29,6 @@ function CreditCard () {
     const [month, setMonth] = useState('');
     const [year, setYear] = useState('');
     const [securityNum, setSecurityNum] = useState('');
-
-    
 
     // Validation of Visa/Mastercard format
     const [isVisa, setIsVisa] = useState(false);
@@ -314,7 +311,7 @@ function CreditCard () {
             <br></br>
             <hr></hr>
             <p>
-                Notes:
+                View States:
             </p>
             <hr></hr>
             <p> Is Visa: 
