@@ -3,11 +3,11 @@
 }
 
 .row {
-    /* border: red 1px solid; */
+    /* border: purple solid 1px; */
 }
 
 .container {
-    /* border: green solid 1px; */
+    /* padding: 10px; */
 }
 
 body{
@@ -16,7 +16,6 @@ body{
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
-
     color: #2C3642;
 }
 
@@ -31,7 +30,6 @@ img{
     margin-right: 10px;
     border-radius: 4px;
     vertical-align: top;
-
 }
 
 .card-img{
@@ -43,7 +41,7 @@ img{
     border: 0px;
     left: 0px;
     top: 0px;
-    
+    min-height:400px;
     background: #FFFFFF;
     box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
     border-radius: 8px;
@@ -55,10 +53,39 @@ img{
     border: 0px;
     border-radius: 15px;
     background-color:#FAFAFC;
+    padding-left: 40px;
+}
+
+.form-label{
+    text-align: left;
+    position: flex;
+}
+
+.form-label:invalid{
+    border: red 1px solid;
+}
+
+.required{
+    background-color: white;
+    position: relative;
+    top: 12px;
+    left: 12px;
+    width: fit-content;
+    padding: 0px 4px;
+    font-size: 12px;
+}
+
+.required::after{
+    content:"*" ;
+    color:red   
+}
+option[selected]:after{
+    content:"*" ;
+    color:red 
 }
 
 .btn{
-    margin-top: 50px;
+    margin-top: 30px;
     padding: 11px, 34px, 11px, 34px;
     width: 145px;
     height: 46px;
@@ -93,5 +120,6 @@ img{
 
 .error-message{
     text-align: left;
+    color: red;
 }
 

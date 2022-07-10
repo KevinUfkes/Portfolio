@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './CreditCard.css';
+import 'bootstrap';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import { Formik } from 'formik'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Visa_L from './../../../images/visa-lg.png';
@@ -11,15 +13,11 @@ import Mastercard_S from './../../../images/mastercard-sm.png';
 import Visa_S from './../../../images/visa-sm.png';
 import Mastercard_L from './../../../images/mastercard-lg.png';
 
-
-
-
 function CreditCard () {
     const currentYear = new Date().getFullYear()
     const currentMonth = new Date().getMonth()
 
     const nameRegex = new RegExp('^[A-Za-z][A-Za-z ]*[A-Za-z]$')
-    // const cardNumRegex = new RegExp('^[0]$')
     const securityNumRegex = new RegExp('^[A-Za-z0-9]{3}$')
 
     // Credit Card form fields
@@ -29,12 +27,7 @@ function CreditCard () {
     const [year, setYear] = useState('');
     const [securityNum, setSecurityNum] = useState('');
 
-    // Validation of Credit Card form fields
-    const [nameIsValid, setNameIsValid] = useState();
-    const [cardNumIsValid, setCardNumIsValid] = useState();
-    const [monthIsValid, setMonthIsValid] = useState();
-    const [yearIsValid, setYearIsValid] = useState();
-    const [securityNumIsValid, setSecurityNumIsValid] = useState();
+    
 
     // Validation of Visa/Mastercard format
     const [isVisa, setIsVisa] = useState(false);
@@ -43,7 +36,18 @@ function CreditCard () {
     // Validation of Credit Card form
     const [formIsValid, setFormIsValid] = useState(false);
 
-    
+    // Validation of Credit Card form fields
+    const [nameIsValid, setNameIsValid] = useState(false);
+    const [cardNumIsValid, setCardNumIsValid] = useState(false);
+    const [monthIsValid, setMonthIsValid] = useState(false);
+    const [yearIsValid, setYearIsValid] = useState(false);
+    const [securityNumIsValid, setSecurityNumIsValid] = useState(false);
+
+    const [nameChange, setNameChange] = useState(false);
+    const [cardNumChange, setcardNumChange] = useState(false);
+    const [monthChange, setMonthChange] = useState(false);
+    const [yearChange, setYearChange] = useState(false);
+    const [securityNumChange, setSecurityNumChange] = useState(false);
 
     useEffect(() => {
         (name!='' && nameRegex.test(name)) ? setNameIsValid(true) : setNameIsValid(false);
@@ -61,9 +65,9 @@ function CreditCard () {
 
         ((cardNum!='' && cardNum.length==16) && ((isVisa && !isMastercard) || (isMastercard && !isVisa))) ? setCardNumIsValid(true) : setCardNumIsValid(false);
 
-        ((month!=='')) ? setMonthIsValid(true) : setMonthIsValid(false);
-        (year !=='' && ((month>currentMonth && year>=currentYear) || (month<=currentMonth && year>currentYear))) ? setYearIsValid(true) : setYearIsValid(false);
-        (securityNum!=='' && securityNumRegex.test(securityNum)) ? setSecurityNumIsValid(true) : setSecurityNumIsValid(false);
+        ((month!='month')) ? setMonthIsValid(true) : setMonthIsValid(false);
+        (year !='' && ((month>currentMonth && year>=currentYear) || (month<=currentMonth && year>currentYear))) ? setYearIsValid(true) : setYearIsValid(false);
+        (securityNum!='' && securityNumRegex.test(securityNum)) ? setSecurityNumIsValid(true) : setSecurityNumIsValid(false);
 
         (nameIsValid && cardNumIsValid && monthIsValid && yearIsValid && securityNumIsValid) ? setFormIsValid(true) : setFormIsValid(false)
     })
@@ -72,75 +76,76 @@ function CreditCard () {
         <> 
             <h1>Credit Card Validation</h1>
             <hr></hr>
-            <Container fluid>
+            <Container fluid className='main'>
                 <Row className="justify-content-md-center">
-                    <Col sm={{span: 12}} md={{span:8}} lg={{span:6}} xl={{span:5}} xxl={{span:4}}>
+                    <Col sm={{span: 12}} md={{span:8}} lg={{span:7}} xl={{span:6}} xxl={{span:4}}>
                         <Row>
                             <Col>
                                 <h3>Payment</h3>
                             </Col>
                         </Row>
-                        <Card>
-                            <Card.Header>
-                                <Row>
-                                    <p>We only accept Master and Visa</p>
-                                </Row>    
-                                <Row>
-                                    <Col className='card-img'>
-                                        {!isMastercard &&
-                                            <img src={Mastercard_S} width="52.42px" height="37px"></img>
-                                        }
+                        <Form>
+                            <Card>
+                                <Card.Header>
+                                    <Row>
+                                        <p>We only accept Master and Visa</p>
+                                    </Row>    
+                                    <Row>
+                                        <Col className='card-img'>
+                                            {!isMastercard &&
+                                                <img src={Mastercard_S} width="52.42px" height="37px"></img>
+                                            }
 
-                                        {isMastercard &&
-                                            <img src={Mastercard_L} width="80px" height="60px"></img>
-                                        }
+                                            {isMastercard &&
+                                                <img src={Mastercard_L} width="80px" height="60px"></img>
+                                            }
 
-                                    {/* </Col>
-                                    <Col> */}
-                                        {!isVisa && 
-                                            <img src={Visa_S} width="52.42px" height="37px"></img>
-                                        }
-                                    
-                                        {isVisa &&
-                                            <img src={Visa_L} width="80px" height="60px"></img>
-                                        }
-                                    </Col>
-                                </Row>
-                            </Card.Header>   
-                            <Card.Body>
-                                <Container fluid>
-                                    <Form>
+                                            {!isVisa && 
+                                                <img src={Visa_S} width="52.42px" height="37px"></img>
+                                            }
+                                        
+                                            {isVisa &&
+                                                <img src={Visa_L} width="80px" height="60px"></img>
+                                            }
+                                        </Col>
+                                    </Row>
+                                </Card.Header>   
+                                <Card.Body>
+                                    <Container fluid>
                                         <Row>
                                             <Form.Label>
-                                                Name on Card
+                                                <div className='required'>Name on Card</div>
                                                 <Form.Control 
                                                     type='text' 
                                                     name='name' 
                                                     value={name} 
-                                                    isValid={nameIsValid} 
-                                                    isInvalid={!nameIsValid}
+                                                    isInvalid={!nameIsValid && nameChange} 
                                                     onChange={event => setName(event.target.value)}
+                                                    onBlur={() => setNameChange(true)}
                                                 />
-                                                <Form.Control.Feedback type='invalid' className='error-message'>
-                                                    Please enter valid name!
-                                                </Form.Control.Feedback>
-                                                
+                                                {nameChange && !nameIsValid &&
+                                                    <p className='error-message'>
+                                                         Sorry, this name is not valid. Please try again.
+                                                    </p>
+                                                }
                                             </Form.Label>
                                         </Row>
                                         <Row>
                                             <Form.Label>
-                                                Card Number
+                                                <div className='required'>Card Number</div>
                                                 <Form.Control 
                                                     type='number' 
                                                     name='cardNum' 
                                                     value={cardNum} 
-                                                    isValid={cardNumIsValid} 
-                                                    isInvalid={!cardNumIsValid}
+                                                    isInvalid={!cardNumIsValid && cardNumChange}
                                                     onChange={event => setCardNum(event.target.value)}
+                                                    onBlur={() => setcardNumChange(true)}
                                                 />
-                                                <Form.Control.Feedback type='invalid' className='error-message'>
-                                                    Please enter valid Mastercard or Visa number!
-                                                </Form.Control.Feedback>
+                                                {cardNumChange && !cardNumIsValid &&
+                                                    <p className='error-message'>
+                                                         Sorry, this credit card number is not valid. Please try again.
+                                                    </p>
+                                                }   
                                             </Form.Label>
                                         </Row>
                                         <Row>
@@ -153,10 +158,11 @@ function CreditCard () {
                                                                 <Form.Select 
                                                                     name='month' 
                                                                     value={month}
-                                                                    isValid={monthIsValid} 
-                                                                    isInvalid={!monthIsValid}
-                                                                    onChange={event => setMonth(event.target.value)}>
-                                                                    <option value=''>Month</option>
+                                                                    isInvalid={!monthIsValid && monthChange}
+                                                                    onChange={event => setMonth(event.target.value)}
+                                                                    onBlur={() => setMonthChange(true)}
+                                                                >
+                                                                    <option value='month'>Month<div className='required'></div></option>
                                                                     <option value='0'>Jan</option>
                                                                     <option value='1'>Feb</option>
                                                                     <option value='2'>Mar</option>
@@ -170,9 +176,11 @@ function CreditCard () {
                                                                     <option value='10'>Nov</option>
                                                                     <option value='11'>Dec</option>
                                                                 </Form.Select>
-                                                                <Form.Control.Feedback type='invalid' className='error-message'>
-                                                                    Please select future date!
-                                                                </Form.Control.Feedback>
+                                                                {monthChange && !monthIsValid &&
+                                                                <p className='error-message'>
+                                                                    Sorry, this date is not valid. Please try again.
+                                                                </p>
+                                                                }  
                                                             </Form.Label>
                                                         </Row>
                                                     </Col>
@@ -183,10 +191,11 @@ function CreditCard () {
                                                                 <Form.Select 
                                                                     name='year' 
                                                                     value={year} 
-                                                                    isValid={yearIsValid} 
-                                                                    isInvalid={!yearIsValid}
-                                                                    onChange={event => [setYear(event.target.value)]}>
-                                                                    <option value=''>Year</option>
+                                                                    isInvalid={!yearIsValid && yearChange && monthChange}
+                                                                    onChange={event => [setYear(event.target.value)]}
+                                                                    onBlur={() => setYearChange(true)}
+                                                                >
+                                                                    <option value=''><div className='required'>Year</div></option>
                                                                     <option value='2021'>2021</option>
                                                                     <option value='2022'>2022</option>
                                                                     <option value='2023'>2023</option>
@@ -210,9 +219,11 @@ function CreditCard () {
                                                                     <option value='2041'>2041</option>
                                                                     <option value='2042'>2042</option>
                                                                 </Form.Select>
-                                                                <Form.Control.Feedback type='invalid' className='error-message'>
-                                                                    Please select future date!
-                                                                </Form.Control.Feedback>
+                                                                {yearChange && !yearIsValid && monthChange &&
+                                                                    <p className='error-message'>
+                                                                        Sorry, this date is not valid. Please try again.
+                                                                    </p>
+                                                                }  
                                                             </Form.Label>
                                                         </Row>
                                                     </Col>
@@ -221,45 +232,49 @@ function CreditCard () {
                                             <Col xs={12} sm={{span: 3, offset: 1}}>
                                                 <Row>
                                                     <Form.Label>
-                                                        CSC/CVV
+                                                        <div className='required'>CSC/CVV</div>
+                                                    
                                                         <Form.Control 
                                                             type='text' 
                                                             name='securityNum' 
                                                             value={securityNum} 
-                                                            isValid={securityNumIsValid} 
-                                                            isInvalid={!securityNumIsValid}
+                                                            isInvalid={!securityNumIsValid && securityNumChange}
                                                             onChange={event => {setSecurityNum(event.target.value)}}
+                                                            onBlur={() => setSecurityNumChange(true)}
                                                         />
-                                                        <Form.Control.Feedback type='invalid' className='error-message'>
-                                                            Please enter valid CSC/CVV!
-                                                        </Form.Control.Feedback>
+                                                        {securityNumChange && !securityNumIsValid &&
+                                                                    <p className='error-message'>
+                                                                        Sorry, this CSC/CVV is not valid. Please try again.
+                                                                    </p>
+                                                                }  
                                                     </Form.Label>
                                                 </Row>
                                             </Col>
                                         </Row>
-                                        <Container>
-                                            <Row>
-                                                <Col sm={{span:4, offset:2}}>
-                                                    <Button className='back'
-                                                        type="button"
-                                                    >Back</Button>
-                                                    
-                                                </Col>
-                                                <Col sm={4}>
-                                                    <Form.Control
-                                                        className='btn'
-                                                        type='submit'
-                                                        value='Continue'
-                                                        disabled={(formIsValid) ? false : true}
-                                                    ></Form.Control> 
-                                                </Col>
-                                            </Row>
-                                        </Container>
-                                    </Form>
-                                </Container>
-                            </Card.Body>  
-                        </Card>
-                        
+                                       
+                                    </Container>
+                                </Card.Body>  
+                            </Card>
+                            <Container>
+                                <Row>
+                                    <Col sm={{span: 3, offset:2}} fluid>
+                                        <Form.Control 
+                                            className='btn back'
+                                            type="button"
+                                            value="Back"
+                                        ></Form.Control>
+                                    </Col>
+                                    <Col sm={{span: 3, offset:1}} fluid>
+                                        <Form.Control
+                                            className='btn'
+                                            type='submit'
+                                            value='Continue'
+                                            disabled={(formIsValid) ? false : true}
+                                        ></Form.Control> 
+                                    </Col>
+                                </Row>
+                            </Container>
+                        </Form>
                     </Col>
                 </Row> 
             </Container>
@@ -282,7 +297,11 @@ function CreditCard () {
             <br></br>
             <br></br>
             <br></br>
-
+            <hr></hr>
+            <p>
+                Notes:
+            </p>
+            <hr></hr>
             <p> Is Visa: 
                 {isVisa && <p>True</p>}
                 {!isVisa && <p>False</p>}
@@ -299,7 +318,7 @@ function CreditCard () {
             <p>CSC/CVV: {securityNum}</p>
 
 
-            <hr></hr>
+            
             <p> Name Valid: 
                 {nameIsValid && <p>True</p>}
                 {!nameIsValid && <p>False</p>}
