@@ -7,9 +7,9 @@ import Navigation from '../../Navigation/Navigation';
 import axios from 'axios';
 
 function LOTRAPI() {
-    
+
     const [characters, setCharacters] = useState([])
-    
+
     useEffect(() => {
         axios({
             method: 'GET',
@@ -55,7 +55,7 @@ function LOTRAPI() {
                                     {characters.map((character) => 
                                         <>
                                             <tr>
-                                                <td>{character["name"]}</td>
+                                                <td>{character.name}</td>
                                                 <td>{character.race}</td>
                                                 <td>{character.gender}</td>
                                                 <td>{character.birth}</td>
@@ -72,17 +72,5 @@ function LOTRAPI() {
         </>
     );
 }
-
-// function get_all_characters(){
-//     axios({
-//         method: 'GET',
-//         url: 'https://the-one-api.dev/v2/character',
-//         headers: {
-//             'Authorization': 'Bearer aMBYfyc0HcqUwNtRG8BV'
-//         }
-//     }).then((response) => {
-//         console.log(response)
-//     })
-// };
 
 export default LOTRAPI;
