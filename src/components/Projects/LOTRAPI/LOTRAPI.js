@@ -1,9 +1,9 @@
 import './LOTRAPI.css'
 import 'bootstrap/dist/css/bootstrap.css';
-import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import React, { useEffect, useState } from 'react'
-import Navigation from '../../Navigation/Navigation';
+import ProjectsNavigation from './../ProjectsNavigation.js';
+import CustomTable from '../../CustomTable/CustomTable';
 import axios from 'axios';
 
 function LOTRAPI() {
@@ -26,45 +26,19 @@ function LOTRAPI() {
     return (
         <>
             <div className="App"> 
-                <Navigation 
-                    bg = "dark"
-                    expand = "sm"
-                    title = {["Projects", "/projects"]}xxx
-                    links = {[
-                        ["Lord of the Rings API", "/projects/lotr-api"], 
-                    ]}
-                />
+                <ProjectsNavigation/>
                 <h1>Lord of the Rings API</h1>   
                 <div className="container">
                     <div className="row">
                         <div className="col col-xxl-3 inputs">
-                            <Button>Characters</Button>
+                            <Button onClick={() => {}}>Characters</Button>
                         </div>
                         <div className="col col-xxl-9">
-                            <Table striped bordered>
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Race</th>
-                                        <th>Gender</th>
-                                        <th>Birth</th>
-                                        <th>Death</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {characters.map((character) => 
-                                        <>
-                                            <tr>
-                                                <td>{character.name}</td>
-                                                <td>{character.race}</td>
-                                                <td>{character.gender}</td>
-                                                <td>{character.birth}</td>
-                                                <td>{character.death}</td>
-                                            </tr>
-                                        </>   
-                                    )}
-                                </tbody>
-                            </Table>
+                            <CustomTable
+                                heads = {["Name", "Race", "Gender", "Birth", "Death"]}
+                                items = {characters}
+                                attributes = {["name", "race", "gender", "birth", "death"]}
+                            />
                         </div>
                     </div>
                 </div>
@@ -72,5 +46,9 @@ function LOTRAPI() {
         </>
     );
 }
+
+// function get_characters(){
+    
+// }
 
 export default LOTRAPI;

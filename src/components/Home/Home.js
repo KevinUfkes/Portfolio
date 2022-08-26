@@ -6,7 +6,7 @@ function Home() {
     return (
       <div className="App">
         <h1>Home</h1>
-        <img src={mygutiar01} />
+        <img src={mygutiar01} alt="PRS CE-24"/>
       </div>
     );
 }

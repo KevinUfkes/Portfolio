@@ -4,7 +4,7 @@ import React from 'react'
 function MarqueeZone() {
     return (
       <div className="App">
-        <h1>The Grand Marquee</h1>
+        {/* <h1>The Grand Marquee</h1>
             <marquee>
                 I’ve heard a number of people make statements lately like: “If you’re using Lorem Ipsum text, just stop it.” Or similar. That argument, expanded, goes something like this. Design exists to serve content. Lorem ipsum is fake content. If you’re already designing, and you are using fake content, you are not serving the content and thus not doing your job as a designer correctly.
 
@@ -82,7 +82,7 @@ function MarqueeZone() {
 
                 Sorry if this is dead-horse-beating, but it’s been running through my head and sometimes the only way to get it out is blogging it =) 
             </marquee>
-            <hr></hr>
+            <hr></hr> */}
 
       </div>
     );

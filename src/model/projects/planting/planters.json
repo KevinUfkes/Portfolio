@@ -1,0 +1,14 @@
+{
+    "planters": [
+        {
+            "fname": "Kevin",
+            "lname": "Ufkes",
+            "email": "kevinufkes001@email.com"
+        },
+        {
+            "fname": "Jesus",
+            "lname": "Christ",
+            "email": "jesuschrist002@email.com"
+        }
+    ]
+}

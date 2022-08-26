@@ -5,6 +5,7 @@ import Navigation from './../Navigation/Navigation.js'
 import Home from './../Home/Home.js'
 import Projects from './../Projects/Projects.js'
 import LOTRAPI from './../Projects/LOTRAPI/LOTRAPI.js'
+import Planting from './../Projects/Planting/Planting.js';
 import MarqueeZone from '../MarqueeZone/MarqueeZone.js';
 
 function App() {
@@ -19,12 +20,14 @@ function App() {
             ["Home", "/"],
             ["Projects", "/projects"], 
             ["Marquee Zone", "/marquee-zone"], 
+            
           ]}
         />
         <Router>
           <Routes>
             <Route path="/projects" element={ <Projects/> }/>
             <Route path="/projects/lotr-api" element={<LOTRAPI/>}/>
+            <Route path="/projects/planting" element={ <Planting/> } />
             <Route path="/marquee-zone" element={ <MarqueeZone/> }/>
             <Route path="/" element={ <Home/> }/>
           </Routes>
