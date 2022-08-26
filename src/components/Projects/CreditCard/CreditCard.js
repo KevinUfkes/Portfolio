@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ProjectsNavigation from '../ProjectsNavigation';
 import './CreditCard.css';
 import 'bootstrap';
 import Container from 'react-bootstrap/Container';
@@ -85,6 +86,7 @@ function CreditCard () {
 
     return (
         <> 
+            <ProjectsNavigation/>
             <h1>Credit Card Validation</h1>
             <hr></hr>
             <Container fluid className='main'>
