@@ -18,7 +18,7 @@ function LOTRAPI() {
                 'Authorization': 'Bearer aMBYfyc0HcqUwNtRG8BV'
             }
         }).then((response) => {
-            console.log(response.data.docs)
+            // console.log(response.data.docs)
             setCharacters(response.data.docs)
         })
     }, [])
