@@ -6,8 +6,6 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Container } from 'react-bootstrap';
 
 function Navigation(props) {
-
-    console.log(props)
     return (
         <>
             <div className="App">

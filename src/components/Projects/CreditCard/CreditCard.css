@@ -1,0 +1,115 @@
+
+body{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #2C3642;
+}
+
+h3{
+    width: 79px;
+    height: 30px;
+    left: 24px;
+    top: 121px;
+    font-size: 20px;
+}
+
+img{
+    margin-right: 10px;
+    border-radius: 4px;
+    vertical-align: top;
+}
+
+.card-img{
+    min-height: 60px;
+    vertical-align: top;
+}
+
+.card{
+    border: 0px;
+    left: 0px;
+    top: 0px;
+    min-height:400px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+}
+
+.card-header{
+    height: 108px;
+    text-align: left;
+    border: 0px;
+    border-radius: 15px;
+    background-color:#FAFAFC;
+    padding-left: 40px;
+}
+
+.form-label:invalid{
+    border: red 1px solid;
+    image-rendering: unset;
+}
+
+.required{
+    background-color: white;
+    position: relative;
+    top: 12px;
+    left: 12px;
+    width: fit-content;
+    padding: 0px 4px;
+    font-size: 12px;
+}
+
+.required::after{
+    font-family: 'Roboto';
+    content:"*" ;
+    color:red   
+}
+
+.btn{
+    margin-top: 30px;
+    padding: 11px, 34px, 11px, 34px;
+    width: 145px;
+    height: 46px;
+    border-radius: 6px;
+    background-color: #127C95;
+    color:white;
+}
+
+.btn:disabled{
+    border: 0px;
+    background-color: #C8CDD2;
+    color:white;
+
+}
+
+.btn:hover{
+    background-color: #3C727E;
+    color:white;
+}
+
+.back{
+    background-color: white;
+    color: #127C95;
+    border: 1px solid #4790A1;
+
+}
+.back:hover{
+    background-color: white;
+    color: #3C727E;
+    border: 1px solid #3C727E;
+}
+
+.error-message{
+    text-align: left;
+    color: red;
+    font-family: 'Lato';
+    font-size: 12px;
+    line-height: 16px;
+}
+
+option{
+    font-size: 18px;
+    line-height: 18px;
+}
