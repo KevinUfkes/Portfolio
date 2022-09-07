@@ -15,7 +15,7 @@ module.exports = {
         // Verify we got a good "db" object
         if (db)
         {
-            _db = db.db("PlantingProject");
+            _db = db.db("PlantingManagement");
             console.log("Successfully connected to MongoDB."); 
         }
         return callback(err);

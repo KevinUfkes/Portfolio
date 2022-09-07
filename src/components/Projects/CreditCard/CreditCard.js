@@ -12,7 +12,7 @@ import Mastercard_S from './../../../images/mastercard-sm.png';
 import Visa_S from './../../../images/visa-sm.png';
 import Mastercard_L from './../../../images/mastercard-lg.png';
 import "@fontsource/roboto";
-import "lato-font"
+// import "lato-font"
 
 function CreditCard () {
 
