@@ -13,7 +13,7 @@ function Planter() {
     // This method fetches the records from the database.
     useEffect(() => {
       async function getRecords() {
-        const response = await fetch(`http://localhost:5000/planters/`);
+        const response = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/plantingmanagement/planters`);
 
         console.log("Response: " + response)
     
