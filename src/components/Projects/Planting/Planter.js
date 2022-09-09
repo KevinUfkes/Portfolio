@@ -1,7 +1,6 @@
 
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect, useState } from 'react'
-const port = process.env.PORT || 5000;
 // import './../../../model/projects/planting/planters.json'
 
 // let planters = require('./../../../model/projects/planting/planters.json')
@@ -9,6 +8,7 @@ const port = process.env.PORT || 5000;
 function Planter() {
 
     const [planters, setPlanters] = useState([]);
+    const [hello, setHello] = useState([]);
  
     // This method fetches the records from the database.
     useEffect(() => {
@@ -29,7 +29,17 @@ function Planter() {
       }
     
       getRecords();
+
+      async function sayHello() {
+        const response = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/helloworld`)
+
+        const hello = await response.json();
+        console.log("Hello Response: " + hello)
+        setHello(hello)
+      }
     
+      sayHello()
+
       return;
     }, [planters.length]);
 
@@ -43,6 +53,7 @@ function Planter() {
         <>
             <div>Planters</div>
             <div className="App"> 
+            <h1>{hello}</h1>
                 {
                     planters.map((planter) =>
                     <div>
