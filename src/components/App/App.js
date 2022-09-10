@@ -7,7 +7,7 @@ import About from './../About/About.js';
 import Projects from './../Projects/Projects.js';
 import LOTRAPI from './../Projects/LOTRAPI/LOTRAPI.js';
 import CreditCard from './../Projects/CreditCard/CreditCard.js';
-import Planting from './../Projects/Planting/Planting.js';
+import PlantingManagement from '../Projects/PlantingManagement/PlantingManagement.js';
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
             <Route path="/projects" element={ <Projects/> }/>
             <Route path="/projects/lotr-api" element={<LOTRAPI/>}/>
             <Route path="/projects/credit-card" element={<CreditCard/>}/>
-            <Route path="/projects/planting" element={<Planting/>}/>
+            <Route path="/projects/planting" element={<PlantingManagement/>}/>
             <Route path="/" element={ <Home/> }/>
           </Routes>
         </Router>
