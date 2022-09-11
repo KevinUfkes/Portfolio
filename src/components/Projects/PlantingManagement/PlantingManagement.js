@@ -5,17 +5,16 @@ import Planters from './Planters/Planters.js'
 import React from 'react'
 
 
-function Planting() {
+function PlantingManagement() {
     return (
         <>
             <div className="App"> 
                 <ProjectsNavigation/>
-                <h1>Planting Management</h1>   
+                <h1>Planting</h1>   
                 <Planters/>
-                
             </div>
         </>
     );
 }
 
-export default Planting;
+export default PlantingManagement;

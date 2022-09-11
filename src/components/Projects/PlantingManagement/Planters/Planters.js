@@ -1,6 +1,7 @@
 
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -34,7 +35,6 @@ function Planters() {
         window.alert(message);
         return;
       }
-  
       const planters = await response.json();
       setPlanters(planters);
     }
@@ -110,7 +110,7 @@ function Planters() {
                             <td>{planter.last_name}</td>
                             <td>{planter.email}</td>
                             <td><Button>Detials</Button></td>
-                            <td><Button>Update</Button></td>
+                            <td><Link to="/projects/planting_management/update_planter" state={{planter_state: JSON.stringify(planter)}}>Update</Link></td>
                             <td><Button value={planter._id} onClick={e => deletePlanter(planter._id)}>Delete</Button></td>
                           </tr>
                         )

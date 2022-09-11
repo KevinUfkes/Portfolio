@@ -8,6 +8,7 @@ import Projects from './../Projects/Projects.js';
 import LOTRAPI from './../Projects/LOTRAPI/LOTRAPI.js';
 import CreditCard from './../Projects/CreditCard/CreditCard.js';
 import PlantingManagement from '../Projects/PlantingManagement/PlantingManagement.js';
+import UpdatePlanter from '../Projects/PlantingManagement/Planters/UpdatePlanter.js';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/projects/lotr-api" element={<LOTRAPI/>}/>
             <Route path="/projects/credit-card" element={<CreditCard/>}/>
             <Route path="/projects/planting" element={<PlantingManagement/>}/>
+            <Route path="/projects/planting_management/update_planter" element={<UpdatePlanter _id="someID"/>}/>
             <Route path="/" element={ <Home/> }/>
           </Routes>
         </Router>
