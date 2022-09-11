@@ -15,19 +15,16 @@ function Planters() {
     const [newEmail, setNewEmail] = useState([]);
 
     const handleSubmit = (e) => {
-        let bodyy = `{
-          "first_name": "${newFirstName}",
-          "last_name": "${newLastName}",
-          "email": "${newEmail}"
-        }`
-        // body = body
-        console.log("Body: " + bodyy)
         createPlanter(newFirstName, newLastName, newEmail )
         setNewFirstName('')
         setNewLastName('')
         setNewEmail('')
         e.preventDefault();
     }
+
+    // const handleDelete = (e) => {
+    //   deletePlanter(planter_id)
+    // }
 
     async function getPlanters() {
       const response = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/plantingmanagement/planters`);
@@ -52,20 +49,23 @@ function Planters() {
         window.location.reload()
       })
     }
+    
+    async function deletePlanter(planter_id) {
+      axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/planter/delete`, {
+        _id: planter_id
+      }).then(response => {
+        console.log(response)
+        window.location.reload()
+      })
+    }
 
-    // This method fetches the records from the database.
     useEffect(() => {
       
-    
       getPlanters();
 
       return;
     }, [planters.length]);
 
-
-    // console.log(planters[0])
-    // planters = JSON.parse(planters)
-    // console.log(planters)
     return (
         <>
           <h1>{newFirstName}</h1><h1>{newLastName}</h1><h1>{newEmail}</h1>
@@ -87,7 +87,7 @@ function Planters() {
                       <Form.Label>Email</Form.Label>
                       <Form.Control type='email' placeholder='Enter email' value={newEmail} onChange={e => setNewEmail(e.target.value)}/>
                     </Form.Group>
-                    <Button variant='primary' type='submit'>Submit</Button>
+                    <Button variant='primary' type='submit'>Add Planter</Button>
                   </Form> 
                 </div>
                 <div className='col col-9'> 
@@ -111,7 +111,7 @@ function Planters() {
                             <td>{planter.email}</td>
                             <td><Button>Detials</Button></td>
                             <td><Button>Update</Button></td>
-                            <td><Button>Delete</Button></td>
+                            <td><Button value={planter._id} onClick={e => deletePlanter(planter._id)}>Delete</Button></td>
                           </tr>
                         )
                       }
