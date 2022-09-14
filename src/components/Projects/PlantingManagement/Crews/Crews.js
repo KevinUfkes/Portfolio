@@ -1,27 +1,41 @@
 import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
+import Employees from '../Employees/Employees';
 
 
 function Crews() {
 
     const [crews, setCrews] = useState([]);
+    const [employees, setEmployees] = useState([])
+    
 
     async function getCrews() {
-        const response = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/crews`);
+        const crewsResponse = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/crews`);
     
-        if (!response.ok) {
-          const message = `An error occurred: ${response.statusText}`;
+        if (!crewsResponse.ok) {
+          const message = `An error occurred: ${crewsResponse.statusText}`;
           window.alert(message);
           return;
         }
-        const crews = await response.json();
+        const crews = await crewsResponse.json();
         setCrews(crews);
+
+        const employeesResponse = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employees`);
+  
+        if (!employeesResponse.ok) {
+          const message = `An error occurred: ${employeesResponse.statusText}`;
+          window.alert(message);
+          return;
+        }
+        const employees = await employeesResponse.json();
+        setEmployees(employees);
       }
 
     useEffect(() => {
     
-    getCrews();
+      getCrews();
+      
 
     return;
     }, [crews.length]);
@@ -34,9 +48,9 @@ function Crews() {
             <Table>
                     <thead>
                       <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
+                        <th>Crew Name</th>
+                        <th>Crewboss</th>
+                        <th>Planters</th>
                         {/* <th>View Details</th>
                         <th>Update</th>
                         <th>Delete</th> */}
@@ -47,8 +61,20 @@ function Crews() {
                         crews.map((crew) => 
                           <tr>
                             <td>{crew.name}</td>
-                            <td>{crew.crewboss}</td>
-                            <td rowSpan={crew.planters.length}><tr><td>{crew.planters[0]}</td><br></br><td>{crew.planters[1]}</td></tr></td>
+                            <td>
+                              {employees.map((employee) => {
+                                if(crew.crewboss==employee._id) return (<>{employee.first_name} {employee.last_name}</>)
+                              })}
+                            </td>
+                            <td>
+                              <ul>
+                                {crew.planters.map((planter) => 
+                                  employees.map((employee) => {
+                                    if(employee._id == planter) return(<li>{employee.first_name} {employee.last_name}</li>)                                                
+                                  })
+                                )}
+                              </ul>
+                            </td>
                             {/* <td><Button>Detials</Button></td>
                             <td><Link to="/projects/planting_management/update_planter" state={{planter_state: JSON.stringify(planter)}}>Update</Link></td>
                             <td><Button value={planter._id} onClick={e => deletePlanter(planter._id)}>Delete</Button></td> */}

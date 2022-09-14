@@ -10,20 +10,20 @@ import axios from 'axios';
 
 function Employees() {
 
-    const [planters, setPlanters] = useState([]);
+    const [employees, setEmployees] = useState([]);
     const [newFirstName, setNewFirstName] = useState([]);
     const [newLastName, setNewLastName] = useState([]);
     const [newEmail, setNewEmail] = useState([]);
 
     const handleSubmit = (e) => {
-        createPlanter(newFirstName, newLastName, newEmail )
+        createEmployee(newFirstName, newLastName, newEmail )
         setNewFirstName('')
         setNewLastName('')
         setNewEmail('')
         e.preventDefault();
     }
 
-    async function getPlanters() {
+    async function getEmployees() {
       const response = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employees`);
   
       if (!response.ok) {
@@ -31,11 +31,11 @@ function Employees() {
         window.alert(message);
         return;
       }
-      const planters = await response.json();
-      setPlanters(planters);
+      const employees = await response.json();
+      setEmployees(employees);
     }
 
-    async function createPlanter(first_name, last_name, email) {
+    async function createEmployee(first_name, last_name, email) {
       axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employee`, {
         first_name: first_name,
         last_name: last_name,
@@ -47,7 +47,7 @@ function Employees() {
       })
     }
     
-    async function deletePlanter(planter_id) {
+    async function deleteEmployee(planter_id) {
       axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employee/delete`, {
         _id: planter_id
       }).then(response => {
@@ -58,10 +58,10 @@ function Employees() {
 
     useEffect(() => {
       
-      getPlanters();
+      getEmployees();
 
       return;
-    }, [planters.length]);
+    }, [employees.length]);
 
     return (
         <>
@@ -107,14 +107,14 @@ function Employees() {
                     </thead>
                     <tbody>
                       {
-                        planters.map((planter) => 
+                        employees.map((employee) => 
                           <tr>
-                            <td>{planter.first_name}</td>
-                            <td>{planter.last_name}</td>
-                            <td>{planter.email}</td>
+                            <td>{employee.first_name}</td>
+                            <td>{employee.last_name}</td>
+                            <td>{employee.email}</td>
                             <td><Button>Detials</Button></td>
-                            <td><Link to="/projects/planting_management/update_planter" state={{planter_state: JSON.stringify(planter)}}>Update</Link></td>
-                            <td><Button value={planter._id} onClick={e => deletePlanter(planter._id)}>Delete</Button></td>
+                            <td><Link to="/projects/planting_management/update_planter" state={{planter_state: JSON.stringify(employee)}}>Update</Link></td>
+                            <td><Button value={employee._id} onClick={e => deleteEmployee(employee._id)}>Delete</Button></td>
                           </tr>
                         )
                       }
