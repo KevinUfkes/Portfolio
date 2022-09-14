@@ -8,7 +8,10 @@ import Projects from './../Projects/Projects.js';
 import LOTRAPI from './../Projects/LOTRAPI/LOTRAPI.js';
 import CreditCard from './../Projects/CreditCard/CreditCard.js';
 import PlantingManagement from '../Projects/PlantingManagement/PlantingManagement.js';
-import UpdatePlanter from '../Projects/PlantingManagement/Planters/UpdatePlanter.js';
+import Employees from '../Projects/PlantingManagement/Employees/Employees';
+import UpdateEmployee from '../Projects/PlantingManagement/Employees/UpdateEmployee.js';
+import Crews from '../Projects/PlantingManagement/Crews/Crews.js';
+
 
 function App() {
   return (
@@ -29,10 +32,18 @@ function App() {
             <Route path="/home" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="/projects" element={ <Projects/> }/>
+
+            // Lord of the Rings API Consumption
             <Route path="/projects/lotr-api" element={<LOTRAPI/>}/>
+
+            // Credit Card 
             <Route path="/projects/credit-card" element={<CreditCard/>}/>
-            <Route path="/projects/planting" element={<PlantingManagement/>}/>
-            <Route path="/projects/planting_management/update_planter" element={<UpdatePlanter _id="someID"/>}/>
+
+            // Planting Mangement
+            <Route path="/projects/planting_management" element={<PlantingManagement/>}/>
+            <Route path="/projects/planting_management/employees" element={<Employees/>}/>
+            <Route path="/projects/planting_management/update_planter" element={<UpdateEmployee />}/>
+            <Route path="/projects/planting_management/crews" element={<Crews/>}/>
             <Route path="/" element={ <Home/> }/>
           </Routes>
         </Router>

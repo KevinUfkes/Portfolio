@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 
 
-function Planters() {
+function Employees() {
 
     const [planters, setPlanters] = useState([]);
     const [newFirstName, setNewFirstName] = useState([]);
@@ -23,12 +23,8 @@ function Planters() {
         e.preventDefault();
     }
 
-    // const handleDelete = (e) => {
-    //   deletePlanter(planter_id)
-    // }
-
     async function getPlanters() {
-      const response = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/plantingmanagement/planters`);
+      const response = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employees`);
   
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
@@ -40,10 +36,11 @@ function Planters() {
     }
 
     async function createPlanter(first_name, last_name, email) {
-      axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/planter`, {
+      axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employee`, {
         first_name: first_name,
         last_name: last_name,
-        email: email
+        email: email,
+        roles: "6320b9ee51a8b68cfaf26c52"
       }).then(response => {
         console.log(response)
         window.location.reload()
@@ -51,7 +48,7 @@ function Planters() {
     }
     
     async function deletePlanter(planter_id) {
-      axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/planter/delete`, {
+      axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employee/delete`, {
         _id: planter_id
       }).then(response => {
         console.log(response)
@@ -68,7 +65,7 @@ function Planters() {
 
     return (
         <>
-          <h1>{newFirstName}</h1><h1>{newLastName}</h1><h1>{newEmail}</h1>
+          <Button href="/projects/planting_management">Planting Management</Button>   
             <div>Planters</div>
             <div className="App">
               <div className="row">
@@ -87,7 +84,13 @@ function Planters() {
                       <Form.Label>Email</Form.Label>
                       <Form.Control type='email' placeholder='Enter email' value={newEmail} onChange={e => setNewEmail(e.target.value)}/>
                     </Form.Group>
-                    <Button variant='primary' type='submit'>Add Planter</Button>
+                    <Form.Group>
+                      <Form.Check type="checkbox" label="Planter" />
+                    </Form.Group>
+                    <Form.Group>
+                      <Form.Check type="checkbox" label="Crewboss" />
+                    </Form.Group>
+                    <Button variant='primary' type='submit'>Add Employee</Button>
                   </Form> 
                 </div>
                 <div className='col col-9'> 
@@ -124,4 +127,4 @@ function Planters() {
     );
 }
 
-export default Planters;
+export default Employees;

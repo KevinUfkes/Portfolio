@@ -1,17 +1,18 @@
 import './PlantingManagement.css'
 import 'bootstrap/dist/css/bootstrap.css';
-import ProjectsNavigation from '../ProjectsNavigation.js'
-import Planters from './Planters/Planters.js'
 import React from 'react'
+import Button from 'react-bootstrap/Button'
 
 
 function PlantingManagement() {
     return (
         <>
             <div className="App"> 
-                <ProjectsNavigation/>
-                <h1>Planting</h1>   
-                <Planters/>
+                <h1>Planting Management</h1>  
+
+                <Button href="/projects/planting_management/employees">Employees</Button>
+                <Button href="/projects/planting_management/crews">Crews</Button>
+                
             </div>
         </>
     );

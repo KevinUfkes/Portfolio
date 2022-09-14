@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 
-function UpdatePlanter(){
+function UpdateEmployee(){
 
     const location = useLocation()
     const navigate = useNavigate()
@@ -17,12 +17,12 @@ function UpdatePlanter(){
     const [newEmail, setNewEmail] = useState(planter.email);
 
     const handleSubmit = (e) => {
-        updatePlanter(newFirstName, newLastName, newEmail )
-        navigate('/projects/planting')
+        updateEmployee(newFirstName, newLastName, newEmail )
+        navigate('/projects/planting_management/employees')
     }
 
-    async function updatePlanter(first_name, last_name, email) {
-        axios.put(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/planters/update`, {
+    async function updateEmployee(first_name, last_name, email) {
+        axios.put(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employee/update`, {
             _id: planter._id,
             data:{
                 first_name: first_name,
@@ -37,7 +37,8 @@ function UpdatePlanter(){
 
     return(
         <>
-            <h1>Update Planter</h1>
+            <h1>Update Employee</h1>
+            {/* <Button href="/projects/planting_management">Planting Management</Button>   */}
             <Table>
                 <thead>
                     <tr>
@@ -68,10 +69,10 @@ function UpdatePlanter(){
                     <Form.Label>Email</Form.Label>
                     <Form.Control type='email' placeholder='Enter email' value={newEmail} onChange={e => setNewEmail(e.target.value)}/>
                 </Form.Group>
-                <Button variant='primary' type='submit'>Update Planter</Button>
+                <Button variant='primary' type='submit'>Update Employee</Button>
             </Form> 
         </>
     )
 }
 
-export default UpdatePlanter;
+export default UpdateEmployee;
