@@ -44,7 +44,7 @@ function Crews() {
         <>
             <h1>Crews</h1>
             <Button href="/projects/planting_management">Planting Management</Button>   
-
+            <Button href="/projects/planting_management/crews/create">Create Crew</Button>
             <Table>
                     <thead>
                       <tr>

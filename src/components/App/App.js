@@ -11,6 +11,7 @@ import PlantingManagement from '../Projects/PlantingManagement/PlantingManagemen
 import Employees from '../Projects/PlantingManagement/Employees/Employees';
 import UpdateEmployee from '../Projects/PlantingManagement/Employees/UpdateEmployee.js';
 import Crews from '../Projects/PlantingManagement/Crews/Crews.js';
+import CreateCrew from '../Projects/PlantingManagement/Crews/CreateCrew.js';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
             <Route path="/projects/planting_management/employees" element={<Employees/>}/>
             <Route path="/projects/planting_management/update_planter" element={<UpdateEmployee />}/>
             <Route path="/projects/planting_management/crews" element={<Crews/>}/>
+            <Route path="/projects/planting_management/crews/create" element={<CreateCrew/>}/>
             <Route path="/" element={ <Home/> }/>
           </Routes>
         </Router>
