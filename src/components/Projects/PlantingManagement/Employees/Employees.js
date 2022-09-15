@@ -15,8 +15,6 @@ function Employees() {
     const [newFirstName, setNewFirstName] = useState([]);
     const [newLastName, setNewLastName] = useState([]);
     const [newEmail, setNewEmail] = useState([]);
-    const [newRolePlanter, setNewRolePlanter] = useState(false);
-    const [newRoleCrewboss, setNewRoleCrewboss] = useState(false);
     const [newRoles, setNewRoles] = useState([]);
 
     const handleSubmit = (e) => {
@@ -101,11 +99,11 @@ function Employees() {
     return (
         <>
           <Button href="/projects/planting_management">Planting Management</Button>   
-            <div>Planters</div>
+            <div>Employees</div>
             <div className="App">
               <div className="row">
                 <div className='col col-3'>
-                  <h3>Add Planter</h3>
+                  <h3>Add Employee</h3>
                   <Form onSubmit={e => {handleSubmit(e)}}>
                     <Form.Group>
                       <Form.Label>First Name</Form.Label>
@@ -119,19 +117,11 @@ function Employees() {
                       <Form.Label>Email</Form.Label>
                       <Form.Control type='email' placeholder='Enter email' value={newEmail} onChange={e => setNewEmail(e.target.value)}/>
                     </Form.Group>
-                    {/* <Form.Group>
-                      <Form.Check type="checkbox" label="Planter" checked={newRolePlanter} onChange={handleChangeNewRolePlanter}/>
-                    </Form.Group>
-                    <Form.Group>
-                      <Form.Check type="checkbox" label="Crewboss" onChange={handleChangeNewRoleCrewboss}/>
-                    </Form.Group> */}
-
                     {roles.map((role) => 
                       <Form.Group>
-                        <Form.Check type="checkbox" label={role.role} name={role._id} onChange={handleChangeRolesCheckbox}/>
+                        <Form.Check type="checkbox" label={role.name} name={role._id} onChange={handleChangeRolesCheckbox}/>
                       </Form.Group>
                     )}
-
                     <Button variant='primary' type='submit'>Add Employee</Button>
                   </Form> 
                 </div>
@@ -155,7 +145,7 @@ function Employees() {
                             <td>{employee.last_name}</td>
                             <td>{employee.email}</td>
                             <td><Button>Detials</Button></td>
-                            <td><Link to="/projects/planting_management/update_planter" state={{planter_state: JSON.stringify(employee)}}>Update</Link></td>
+                            <td><Link to="/projects/planting_management/update_planter" state={{employee_state: JSON.stringify(employee)}}>Update</Link></td>
                             <td><Button value={employee._id} onClick={e => deleteEmployee(employee._id)}>Delete</Button></td>
                           </tr>
                         )
