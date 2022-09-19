@@ -72,9 +72,6 @@ function UpdateEmployee(){
     
         getRoles();
         setNewRoles(employee.roles)
-
-        console.log("NEW ROLES: " + newRoles)
-
         return;
     }, []);
 
