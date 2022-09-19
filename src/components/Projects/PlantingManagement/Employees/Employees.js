@@ -1,6 +1,7 @@
 
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect, useState } from 'react'
+import { getEmployees, testFunc } from './../mongodb_routes.js'
 import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
@@ -35,18 +36,6 @@ function Employees() {
         if(loc != -1) newRoles.splice(loc, 1);
       }
       console.log(newRoles)
-    }
-
-    async function getEmployees() {
-      const response = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employees`);
-  
-      if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
-      const employees = await response.json();
-      setEmployees(employees);
     }
 
     async function createEmployee(first_name, last_name, email, roles) {
@@ -89,15 +78,19 @@ function Employees() {
     }
 
     useEffect(() => {
-      
-      getEmployees();
-      getRoles();
+      async function loadEmployeesData(){
+        setEmployees(await getEmployees())
+      }
 
+      loadEmployeesData()
       return;
     }, [employees.length]);
 
     return (
         <>
+
+        <h1>Employees</h1>
+        {/* <h2>{JSON.stringify(employees)}</h2> */}
           <Button href="/projects/planting_management">Planting Management</Button>   
             <div>Employees</div>
             <div className="App">
