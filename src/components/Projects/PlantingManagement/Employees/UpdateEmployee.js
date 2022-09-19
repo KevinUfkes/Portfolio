@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
+import { getIndexByValue } from './../functions.js';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -61,12 +62,12 @@ function UpdateEmployee(){
         setRoles(roles);
     }
 
-    function getIndexByValue(arr, value){
-        for(let x=0; x<arr.length; x++){
-        if(arr[x] == value) return x;
-        }
-        return -1;
-    }
+    // function getIndexByValue(arr, value){
+    //     for(let x=0; x<arr.length; x++){
+    //     if(arr[x] == value) return x;
+    //     }
+    //     return -1;
+    // }
 
     useEffect(() => {
     
