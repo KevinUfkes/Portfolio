@@ -1,7 +1,8 @@
 
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect, useState } from 'react'
-import { getEmployees, createEmployee, deleteEmployee, getRoles } from './../mongodb_routes.js'
+import { getEmployees, createEmployee, deleteEmployee } from '../MongoRoutes/EmployeeRoutes.js'
+import { getRoles } from '../MongoRoutes/RoleRoutes.js';
 import { getIndexByValue } from './../functions.js';
 import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';

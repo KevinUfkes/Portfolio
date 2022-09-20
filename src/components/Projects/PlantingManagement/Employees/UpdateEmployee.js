@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { updateEmployee } from '../MongoRoutes/EmployeeRoutes.js';
+import { getRoles } from '../MongoRoutes/RoleRoutes.js';
+
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getIndexByValue } from './../functions.js';
 import Table from 'react-bootstrap/Table';
@@ -20,7 +23,7 @@ function UpdateEmployee(){
     const [newRoles, setNewRoles] = useState([]);
 
     const handleSubmit = (e) => {
-        updateEmployee(newFirstName, newLastName, newEmail, newRoles)
+        updateEmployee(employee._id, newFirstName, newLastName, newEmail, newRoles)
         navigate('/projects/planting_management/employees')
     }
 
@@ -36,35 +39,39 @@ function UpdateEmployee(){
         console.log(newRoles)
     }
 
-    async function updateEmployee(first_name, last_name, email, roles) {
-        axios.put(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employee/update`, {
-            _id: employee._id,
-            data:{
-                first_name: first_name,
-                last_name: last_name,
-                email: email,
-                roles: roles
-            }
-        }).then(response => {
-            console.log(response)
-            window.location.reload()
-        })
-    }
+    // async function updateEmployee(first_name, last_name, email, roles) {
+    //     axios.put(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employee/update`, {
+    //         _id: employee._id,
+    //         data:{
+    //             first_name: first_name,
+    //             last_name: last_name,
+    //             email: email,
+    //             roles: roles,
+    //             crew: []
+    //         }
+    //     }).then(response => {
+    //         console.log(response)
+    //         window.location.reload()
+    //     })
+    // }
 
-    async function getRoles() {
-        const response = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/roles`)
-        if (!response.ok) {
-          const message = `An error occurred: ${response.statusText}`;
-          window.alert(message);
-          return;
-        }
-        const roles = await response.json();
-        setRoles(roles);
-    }
+    // async function getRoles() {
+    //     const response = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/roles`)
+    //     if (!response.ok) {
+    //       const message = `An error occurred: ${response.statusText}`;
+    //       window.alert(message);
+    //       return;
+    //     }
+    //     const roles = await response.json();
+    //     setRoles(roles);
+    // }
 
     useEffect(() => {
+        async function loadRoles(){
+            setRoles(await getRoles())
+        }
     
-        getRoles();
+        loadRoles();
         setNewRoles(employee.roles)
         return;
     }, []);

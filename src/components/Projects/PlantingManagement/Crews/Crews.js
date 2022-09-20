@@ -1,43 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { getCrews, deleteCrew } from '../MongoRoutes/CrewRoutes.js';
+import { getEmployees } from '../MongoRoutes/EmployeeRoutes.js'
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
-import Employees from '../Employees/Employees';
+import { Link } from 'react-router-dom';
 
 
 function Crews() {
 
     const [crews, setCrews] = useState([]);
     const [employees, setEmployees] = useState([])
-    
-
-    async function getCrews() {
-        const crewsResponse = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/crews`);
-    
-        if (!crewsResponse.ok) {
-          const message = `An error occurred: ${crewsResponse.statusText}`;
-          window.alert(message);
-          return;
-        }
-        const crews = await crewsResponse.json();
-        setCrews(crews);
-
-        const employeesResponse = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employees`);
-  
-        if (!employeesResponse.ok) {
-          const message = `An error occurred: ${employeesResponse.statusText}`;
-          window.alert(message);
-          return;
-        }
-        const employees = await employeesResponse.json();
-        setEmployees(employees);
-      }
 
     useEffect(() => {
-    
-      getCrews();
-      
+  
+      async function loadEmployees(){
+        setEmployees(await getEmployees())
+      }
 
-    return;
+      async function loadCrews(){
+        setCrews(await getCrews())
+      }
+
+      loadEmployees()
+      loadCrews()
+
+      return;
     }, [crews.length]);
 
     return(
@@ -51,9 +38,9 @@ function Crews() {
                         <th>Crew Name</th>
                         <th>Crewboss</th>
                         <th>Planters</th>
-                        {/* <th>View Details</th>
+                        <th>View Details</th>
                         <th>Update</th>
-                        <th>Delete</th> */}
+                        <th>Delete</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -75,12 +62,13 @@ function Crews() {
                                 )}
                               </ul>
                             </td>
-                            {/* <td><Button>Detials</Button></td>
-                            <td><Link to="/projects/planting_management/update_planter" state={{planter_state: JSON.stringify(planter)}}>Update</Link></td>
-                            <td><Button value={planter._id} onClick={e => deletePlanter(planter._id)}>Delete</Button></td> */}
+                            <td><Button>Detials</Button></td>
+                            <td><Link to="">Update</Link></td>
+                            <td><Button value={crew._id} onClick={e => deleteCrew(crew._id)}>Delete</Button></td>
                           </tr>
                         )
                       }
+
                     </tbody>
                   </Table>
         </>
