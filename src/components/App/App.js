@@ -12,6 +12,7 @@ import Employees from '../Projects/PlantingManagement/Employees/Employees';
 import UpdateEmployee from '../Projects/PlantingManagement/Employees/UpdateEmployee.js';
 import Crews from '../Projects/PlantingManagement/Crews/Crews.js';
 import CreateCrew from '../Projects/PlantingManagement/Crews/CreateCrew.js';
+import UpdateCrew from '../Projects/PlantingManagement/Crews/UpdateCrew.js';
 
 
 function App() {
@@ -34,18 +35,19 @@ function App() {
             <Route path="/about" element={<About/>}/>
             <Route path="/projects" element={ <Projects/> }/>
 
-            // Lord of the Rings API Consumption
+            {/* Lord of the Rings API Consumption */}
             <Route path="/projects/lotr-api" element={<LOTRAPI/>}/>
 
-            // Credit Card 
+            {/* Credit Card  */}
             <Route path="/projects/credit-card" element={<CreditCard/>}/>
 
-            // Planting Mangement
+            {/* Planting Mangement */}
             <Route path="/projects/planting_management" element={<PlantingManagement/>}/>
             <Route path="/projects/planting_management/employees" element={<Employees/>}/>
             <Route path="/projects/planting_management/update_planter" element={<UpdateEmployee />}/>
             <Route path="/projects/planting_management/crews" element={<Crews/>}/>
             <Route path="/projects/planting_management/crews/create" element={<CreateCrew/>}/>
+            <Route path="/projects/planting_management/crews/update_crew" element={<UpdateCrew/>}/>
             <Route path="/" element={ <Home/> }/>
           </Routes>
         </Router>

@@ -7,7 +7,6 @@ import { getIndexByValue } from './../functions.js';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import axios from 'axios';
 
 function UpdateEmployee(){
 
@@ -23,7 +22,10 @@ function UpdateEmployee(){
     const [newRoles, setNewRoles] = useState([]);
 
     const handleSubmit = (e) => {
-        updateEmployee(employee._id, newFirstName, newLastName, newEmail, newRoles)
+        console.log("EMPLOYEE: " + JSON.stringify(employee));
+
+        console.log("CREW: " + JSON.stringify(employee.crew))
+        updateEmployee(employee._id, newFirstName, newLastName, newEmail, newRoles, employee.crew);
         navigate('/projects/planting_management/employees')
     }
 
@@ -38,33 +40,6 @@ function UpdateEmployee(){
         }
         console.log(newRoles)
     }
-
-    // async function updateEmployee(first_name, last_name, email, roles) {
-    //     axios.put(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employee/update`, {
-    //         _id: employee._id,
-    //         data:{
-    //             first_name: first_name,
-    //             last_name: last_name,
-    //             email: email,
-    //             roles: roles,
-    //             crew: []
-    //         }
-    //     }).then(response => {
-    //         console.log(response)
-    //         window.location.reload()
-    //     })
-    // }
-
-    // async function getRoles() {
-    //     const response = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/roles`)
-    //     if (!response.ok) {
-    //       const message = `An error occurred: ${response.statusText}`;
-    //       window.alert(message);
-    //       return;
-    //     }
-    //     const roles = await response.json();
-    //     setRoles(roles);
-    // }
 
     useEffect(() => {
         async function loadRoles(){
@@ -83,6 +58,7 @@ function UpdateEmployee(){
             <Table>
                 <thead>
                     <tr>
+                        <th>ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>

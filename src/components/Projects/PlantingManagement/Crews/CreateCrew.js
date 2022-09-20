@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { getEmployees } from '../MongoRoutes/EmployeeRoutes.js';
-import { getRoles } from '../MongoRoutes/RoleRoutes.js';
-import { getCrews, createCrew } from '../MongoRoutes/CrewRoutes.js';
+import { createCrew } from '../MongoRoutes/CrewRoutes.js';
 import { getIndexByValue } from './../functions.js';
 
-import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 

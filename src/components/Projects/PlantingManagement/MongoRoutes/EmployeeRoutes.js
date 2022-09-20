@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export async function getEmployees() {
     const response = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employees`);
 
@@ -26,7 +25,7 @@ export async function createEmployee(first_name, last_name, email, roles) {
     })
 }
 
-export async function updateEmployee(employee_id, first_name, last_name, email, roles) {
+export async function updateEmployee(employee_id, first_name, last_name, email, roles, crew) {
   axios.put(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employee/update`, {
       _id: employee_id,
       data:{
@@ -34,7 +33,7 @@ export async function updateEmployee(employee_id, first_name, last_name, email, 
           last_name: last_name,
           email: email,
           roles: roles,
-          crew: []
+          crew: crew
       }
   }).then(response => {
       console.log(response)
