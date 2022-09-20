@@ -94,19 +94,6 @@ function CreateCrew() {
       })
     }
 
-    function sortCrewbosses(arrCrewbosses, arrCrews) {
-        for(let x=0; x<arrCrews.length; x++){
-            console.log("SORTCREWBOSSES: " + arrCrews[x].crewboss)
-            for(let y=0; y<arrCrewbosses.length; y++){
-                if(arrCrewbosses[y]== arrCrews[x].crewboss){
-                    crewbossesWithCrew.push(JSON.stringify(arrCrewbosses[y]))
-                } else{
-                    crewbossesWithoutCrew.push(JSON.stringify(arrCrewbosses[x]))
-                }
-            }
-        }
-    }
-
     function getIndexByValue(arr, value){
         for(let x=0; x<arr.length; x++){
             if(arr[x] == value) return x;
@@ -119,10 +106,9 @@ function CreateCrew() {
         getRoles();
         getEmployees();
         getCrews();
-        
 
         return;
-    }, [sortCrewbosses(employees, crews)  ]);
+    }, []);
 
     return(
         <>
