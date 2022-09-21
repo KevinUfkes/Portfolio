@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ProjectsNavigation from '../ProjectsNavigation';
+import Navigation from './../../Navigation/Navigation.js';
 import './CreditCard.css';
 import 'bootstrap';
 import Container from 'react-bootstrap/Container';
@@ -87,6 +87,15 @@ function CreditCard () {
     return (
         <> 
             {/* <ProjectsNavigation/> */}
+            <Navigation 
+            bg = "dark"
+            expand = 'lg'
+            title = {["Credit Card Form", "/projects/credit-card"]}
+            links = {[
+                ["About", "/projects/credit-card/about"],
+                ["Credit Card", "/projects/credit-card"],
+              ]}
+          />
             <h1>Credit Card Validation</h1>
             {/* <hr></hr> */}
             <Container fluid className='main'>

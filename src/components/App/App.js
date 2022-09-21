@@ -8,6 +8,7 @@ import Profile from './../Profile/Profile.js';
 import Projects from './../Projects/Projects.js';
 import LOTRAPI from './../Projects/LOTRAPI/LOTRAPI.js';
 import CreditCard from './../Projects/CreditCard/CreditCard.js';
+import CCAbout from '../Projects/CreditCard/CCAbout';
 import PlantingManagement from '../Projects/PlantingManagement/PlantingManagement.js';
 import PMAbout from './../Projects/PlantingManagement/About/PMAbout.js'
 import Employees from '../Projects/PlantingManagement/Employees/Employees';
@@ -44,6 +45,7 @@ function App() {
 
             {/* Credit Card  */}
             <Route path="/projects/credit-card" element={<CreditCard/>}/>
+            <Route path="/projects/credit-card/about" element={<CCAbout/>}/>
 
             {/* Planting Mangement */}
             <Route path="/projects/planting_management" element={<PlantingManagement/>}/>
