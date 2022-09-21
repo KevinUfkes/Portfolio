@@ -33,8 +33,6 @@ function UpdateEmployee(){
     }
 
     const handleChangeRolesCheckbox = (e) => {
-        console.log("Checked: " + e.target.checked)
-        console.log("Name: " + e.target.name)
         if(e.target.checked){
           newRoles.push(e.target.name)
         } else{

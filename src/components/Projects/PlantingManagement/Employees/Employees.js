@@ -121,7 +121,7 @@ function Employees() {
                                   <td>{employee.first_name}</td>
                                   <td>{employee.last_name}</td>
                                   <td>{employee.email}</td>
-                                  <td><Button>Detials</Button></td>
+                                  <td><Button>Details</Button></td>
                                   <td><Link to="/projects/planting_management/update_planter" state={{employee_state: JSON.stringify(employee)}}><Button variant="warning">Update</Button></Link></td>
                                   <td><Button value={employee._id} onClick={e => deleteEmployee(employee._id)} variant="danger">Delete</Button></td>
                                 </tr>

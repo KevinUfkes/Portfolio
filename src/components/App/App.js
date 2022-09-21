@@ -4,10 +4,12 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navigation from './../Navigation/Navigation.js';
 import Home from './../Home/Home.js';
 import About from './../About/About.js';
+import Profile from './../Profile/Profile.js';
 import Projects from './../Projects/Projects.js';
 import LOTRAPI from './../Projects/LOTRAPI/LOTRAPI.js';
 import CreditCard from './../Projects/CreditCard/CreditCard.js';
 import PlantingManagement from '../Projects/PlantingManagement/PlantingManagement.js';
+import PMAbout from './../Projects/PlantingManagement/About/PMAbout.js'
 import Employees from '../Projects/PlantingManagement/Employees/Employees';
 import UpdateEmployee from '../Projects/PlantingManagement/Employees/UpdateEmployee.js';
 import Crews from '../Projects/PlantingManagement/Crews/Crews.js';
@@ -24,7 +26,8 @@ function App() {
           expand = 'lg'
           title = {["kevinufkes.ca", "/"]}
           links = {[
-            ["Home", "/"],
+            // ["Home", "/"],
+            ["Profile", "/profile"],
             ["About", "/about"],
             ["Projects", "/projects"], 
           ]}
@@ -33,6 +36,7 @@ function App() {
           <Routes>
             <Route path="/home" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
+            <Route path="/profile" element={<Profile/>}/>
             <Route path="/projects" element={ <Projects/> }/>
 
             {/* Lord of the Rings API Consumption */}
@@ -43,12 +47,13 @@ function App() {
 
             {/* Planting Mangement */}
             <Route path="/projects/planting_management" element={<PlantingManagement/>}/>
+            <Route path="/projects/planting_management/about" element={<PMAbout/>}/>
             <Route path="/projects/planting_management/employees" element={<Employees/>}/>
             <Route path="/projects/planting_management/update_planter" element={<UpdateEmployee />}/>
             <Route path="/projects/planting_management/crews" element={<Crews/>}/>
             <Route path="/projects/planting_management/crews/create" element={<CreateCrew/>}/>
             <Route path="/projects/planting_management/crews/update_crew" element={<UpdateCrew/>}/>
-            <Route path="/" element={ <Home/> }/>
+            <Route path="/" element={ <Profile/> }/>
           </Routes>
         </Router>
       </div>

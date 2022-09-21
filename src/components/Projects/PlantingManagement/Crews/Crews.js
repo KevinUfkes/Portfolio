@@ -80,7 +80,7 @@ function Crews() {
                                 )}
                               </ul>
                             </td>
-                            <td><Button>Detials</Button></td>
+                            <td><Button>Details</Button></td>
                             <td><Link to="/projects/planting_management/crews/update_crew" state={{crew_state: JSON.stringify(crew)}}><Button variant="warning">Update</Button></Link></td>
                             <td><Button value={crew._id} onClick={e => deleteCrew(crew._id)} variant="danger">Delete</Button></td>
                           </tr>

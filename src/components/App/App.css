@@ -41,3 +41,21 @@
   color: red;
 }
 
+.main_card{
+  margin-top: 20px;
+  /* box-shadow: 200px 20px 20px; */
+  text-align: center;
+}
+
+.main_card_title{
+  padding-top: 10px;
+}
+
+.main_card_img{
+  margin: 20px;
+  width: 80%;
+  display: inline-block;
+  align-self: center;
+  box-shadow:  0px 0px 20px rgb(185, 183, 183);
+}
+
