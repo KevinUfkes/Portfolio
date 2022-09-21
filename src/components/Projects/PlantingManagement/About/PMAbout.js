@@ -49,7 +49,7 @@ function PMAbout() {
                                                 </div>
                                                 <div className='col col-8'>
                                                     <p className='main_about_p'>
-                                                        In its current state, the Planting Management application allows for CRUD operations on Employees and Crews. Employees are give a role "Planter" or "Crewboss". 
+                                                        In its current state, the Planting Management application allows for CRUD operations on Employees and Crews. Employees are assigned a role "Planter" and/or "Crewboss". 
                                                         Based on these roles, crews can be created composed of 1 crewboss and any number of planters who are not currently in a crew. 
                                                     </p>
                                                     <p className='main_about_p'>
@@ -73,6 +73,12 @@ function PMAbout() {
                                                             <li>
                                                                 User authentication
                                                             </li>
+                                                            <li>
+                                                                Data integrity
+                                                            </li>
+                                                            <li>
+                                                                Performance
+                                                            </li>
                                                         </ul>
                                                     </p>
                                                 </div>
@@ -86,7 +92,6 @@ function PMAbout() {
                     </div>
                 </div>
             </div>
-           
         </>
     )
 }

@@ -48,4 +48,9 @@
     text-shadow: 1px 1px 3px rgb(1, 39, 1);
 }
 
+.pm_ul {
+    text-align: centre;
+    list-style: none;
+    margin-right: 10px;
+}
 

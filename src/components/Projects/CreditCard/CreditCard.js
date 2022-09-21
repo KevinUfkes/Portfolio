@@ -90,10 +90,10 @@ function CreditCard () {
             <Navigation 
             bg = "dark"
             expand = 'lg'
-            title = {["Credit Card Form", "/projects/credit-card"]}
+            title = {["Credit Card Validation", "/projects/credit-card"]}
             links = {[
                 ["About", "/projects/credit-card/about"],
-                ["Credit Card", "/projects/credit-card"],
+                ["Credit Card Validation", "/projects/credit-card"],
               ]}
           />
             <h1>Credit Card Validation</h1>

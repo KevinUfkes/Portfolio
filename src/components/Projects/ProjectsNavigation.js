@@ -12,7 +12,7 @@ function ProjectsNavigation() {
                     links = {[
                     // ["Lord of the Rings API", "/projects/lotr-api"], 
                     ["Planting Management", "/projects/planting_management"],
-                    ["Credit Card Authentication", "/projects/credit-card"],
+                    ["Credit Card Validation", "/projects/credit-card"],
                     ]}
                 />
             </div>

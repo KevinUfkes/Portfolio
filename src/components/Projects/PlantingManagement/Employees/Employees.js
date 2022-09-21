@@ -62,7 +62,6 @@ function Employees() {
                 ["About", "/projects/planting_management/about"],
                 ["Employees", "/projects/planting_management/employees"],
                 ["Crews", "/projects/planting_management/crews"], 
-                // ["Create Crews", "/projects/planting_management/crews/create"],
               ]}
           />
             
@@ -109,6 +108,7 @@ function Employees() {
                               <th>First Name</th>
                               <th>Last Name</th>
                               <th>Email</th>
+                              <th>Roles</th>
                               <th>View Details</th>
                               <th>Update</th>
                               <th>Delete</th>
@@ -121,10 +121,21 @@ function Employees() {
                                   <td>{employee.first_name}</td>
                                   <td>{employee.last_name}</td>
                                   <td>{employee.email}</td>
+                                  <td>
+                                    {roles.map((role) => {
+                                      if(employee.roles.includes(role._id)){
+                                        return (
+                                          <p>{role.name}</p>
+                                        )
+                                      }
+                                    })}
+                                  </td>
                                   <td><Button>Details</Button></td>
                                   <td><Link to="/projects/planting_management/update_planter" state={{employee_state: JSON.stringify(employee)}}><Button variant="warning">Update</Button></Link></td>
                                   <td><Button value={employee._id} onClick={e => deleteEmployee(employee._id)} variant="danger">Delete</Button></td>
                                 </tr>
+                              
+                                
                               )
                             }
                           </tbody>
