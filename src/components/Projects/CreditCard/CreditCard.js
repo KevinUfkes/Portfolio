@@ -86,9 +86,9 @@ function CreditCard () {
 
     return (
         <> 
-            <ProjectsNavigation/>
+            {/* <ProjectsNavigation/> */}
             <h1>Credit Card Validation</h1>
-            <hr></hr>
+            {/* <hr></hr> */}
             <Container fluid className='main'>
                 <Row className="justify-content-md-center">
                     <Col sm={{span: 12}} md={{span:8}} lg={{span:7}} xl={{span:6}} xxl={{span:4}}>
@@ -292,77 +292,6 @@ function CreditCard () {
                     </Col>
                 </Row> 
             </Container>
-
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <hr></hr>
-            <p>
-                View States:
-            </p>
-            <hr></hr>
-            <p> Is Visa: 
-                {isVisa && <p>True</p>}
-                {!isVisa && <p>False</p>}
-            </p>
-            <p> Is Mastercard: 
-                {isMastercard && <p>True</p>}
-                {!isMastercard && <p>False</p>}
-            </p>
-
-            <p>Name: {name}</p>
-            <p>Card Number: {cardNum}</p>
-            <p>Month: {month}</p>
-            <p>Year: {year}</p>
-            <p>CSC/CVV: {securityNum}</p>
-
-
-            
-            <p> Name Valid: 
-                {nameIsValid && <p>True</p>}
-                {!nameIsValid && <p>False</p>}
-            </p>
-
-            <p> Card Number Valid: 
-                {cardNumIsValid && <p>True</p>}
-                {!cardNumIsValid && <p>False</p>}
-            </p>
-
-            <p> Month Valid: 
-                {monthIsValid && <p>True</p>}
-                {!monthIsValid && <p>False</p>}
-            </p>
-
-            <p> Year Valid: 
-                {yearIsValid && <p>True</p>}
-                {!yearIsValid && <p>False</p>}
-            </p>
-
-            <p> Security Number Valid: 
-                {securityNumIsValid && <p>True</p>}
-                {!securityNumIsValid && <p>False</p>}
-            </p>
-
-            <p> Form Valid: 
-                {formIsValid && <p>True</p>}
-                {!formIsValid && <p>False</p>}
-            </p>
-
         </>
     )
 }

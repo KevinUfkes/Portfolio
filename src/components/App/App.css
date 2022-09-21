@@ -68,3 +68,8 @@
   /* border: solid black 1px; */
   text-align: left;
 }
+
+.main_projects_img {
+  width: 80%;
+  margin-bottom: 20px;
+}
