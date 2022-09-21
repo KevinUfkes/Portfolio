@@ -43,7 +43,6 @@
 
 .main_card{
   margin-top: 20px;
-  /* box-shadow: 200px 20px 20px; */
   text-align: center;
 }
 
@@ -59,7 +58,13 @@
   box-shadow:  0px 0px 20px rgb(185, 183, 183);
 }
 
-.main_ul li{
+.main_ul{
   list-style: none;
+  display: inline-block;
+  text-align: left;
 }
 
+.main_about_p {
+  /* border: solid black 1px; */
+  text-align: left;
+}
