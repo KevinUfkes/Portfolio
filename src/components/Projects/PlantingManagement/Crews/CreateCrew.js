@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { getEmployees } from '../MongoRoutes/EmployeeRoutes.js';
 import { createCrew } from '../MongoRoutes/CrewRoutes.js';
 import { getIndexByValue } from './../functions.js';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Navigation from './../../../Navigation/Navigation.js';
+import Card from 'react-bootstrap/Card';
 
 
 function CreateCrew() {
@@ -14,12 +17,14 @@ function CreateCrew() {
     const [planters, setPlanters] = useState([]);
     const [crewboss, setCrewboss] = useState([]);
 
+    const navigate = useNavigate()
     const planterRoleId = "6320b9ee51a8b68cfaf26c52";
     const crewbossRoleId = "6320b9fe51a8b68cfaf26c53";
 
     const handleSubmit = (e) => {
-        createCrew(crewName, crewboss, planters)
         e.preventDefault();
+        createCrew(crewName, crewboss, planters)
+        navigate('/projects/planting_management/crews')
     }
 
     const handleChangeRolesCheckbox = (e) => {
@@ -47,49 +52,76 @@ function CreateCrew() {
 
     return(
         <>
-            <h1>Create Crew</h1>
-            <Form onSubmit={e => {handleSubmit(e)}}>
-                <Form.Group>
-                    <Form.Label>Crew Name</Form.Label>
-                    <Form.Control type='text' placeholder='Enter crew name' value={crewName} onChange={e => setCrewName(e.target.value)}/>
-                </Form.Group>
-                <h1>Crewboss: {}</h1>
+            <div className="App pm">
+                <Navigation 
+                    bg = "dark"
+                    expand = 'lg'
+                    title = {["Planting Management", "/projects/planting_management"]}
+                    links = {[
+                        ["About", "/projects/planting_management/about"],
+                        ["Employees", "/projects/planting_management/employees"],
+                        ["Crews", "/projects/planting_management/crews"], 
+                        // ["Create Crews", "/projects/planting_management/crews/create"],
+                        ]}
+                />
+                <div className='container'>
+                    <Card className='pm_card pm_card_base'>
+                        <Card.Title><h1>Create Crew</h1></Card.Title>
+                        <Card.Body>
+                            <Form onSubmit={e => {handleSubmit(e)}} className="pm_form">
+                                <div className='row'>
+                                    <div className='col'>
+                                        <Form.Group>
+                                            <Form.Label>Crew Name</Form.Label>
+                                            <Form.Control type='text' placeholder='Enter crew name' value={crewName} onChange={e => setCrewName(e.target.value)}/>
+                                        </Form.Group>
+                                    </div>
+                                    <div className='col'>
+                                        <Form.Group>
+                                            <Form.Label>Crewboss</Form.Label>
+                                            <Form.Select onChange={e => setCrewboss(e.target.value)}>
+                                                <option disabled selected value> Select a Crewboss</option>
+                                                {
+                                                    employees.map((employee) => {
+                                                        if (employee.roles.includes(crewbossRoleId) && employee.crew.length===0) {
+                                                            return (
+                                                                <option value={employee._id}>{employee.first_name} {employee.last_name}</option>
+                                                            )
+                                                        } 
+                                                    })
+                                                }
+                                            </Form.Select>
+                                        </Form.Group>
+                                    </div>
+                                    <div className='col'>
+                                        <Form.Group>
+                                            <Form.Label>Planters</Form.Label>
+                                            {
+                                                employees.map((employee) => {
+                                                    if( employee.roles.includes(planterRoleId) && employee.crew.length===0) {
+                                                        return (
+                                                            <>
+                                                                <>
+                                                                    <Form.Check type="checkbox" label={employee.first_name + " " + employee.last_name} name={employee._id} onChange={handleChangeRolesCheckbox}/>
+                                                                </>
+                                                            </>
+                                
+                                                        )
+                                                    }
+                                                })
+                                            }
+                                        </Form.Group>
+                                    </div>
+                                </div>
+                                <Button variant='success' type='submit'>Create Crew</Button>
+                            </Form> 
+                        </Card.Body>
+                    </Card>
+                </div>
 
-                <Form.Group>
-                    <Form.Label>Crewboss</Form.Label>
-                    <Form.Select onChange={e => setCrewboss(e.target.value)}>
-                        <option disabled selected value> Select a Crewboss</option>
-                        {
-                            employees.map((employee) => {
-                                if (employee.roles.includes(crewbossRoleId) && employee.crew.length===0) {
-                                    return (
-                                        <option value={employee._id}>{employee.first_name} {employee.last_name}</option>
-                                    )
-                                } 
-                            })
-                        }
-                    </Form.Select>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Planters</Form.Label>
-                </Form.Group>
-                {
-                    employees.map((employee) => {
-                        if( employee.roles.includes(planterRoleId) && employee.crew.length===0) {
-                            return (
-                                <>
-                                    <Form.Group>
-                                        <Form.Check type="checkbox" label={employee.first_name + " " + employee.last_name} name={employee._id} onChange={handleChangeRolesCheckbox}/>
-                                    </Form.Group>
-                                </>
-      
-                            )
-                        }
-                    })
-                }
-                
-                <Button variant='primary' type='submit'>Create Crew</Button>
-            </Form> 
+            </div>
+            
+            
         </>
     )
 }

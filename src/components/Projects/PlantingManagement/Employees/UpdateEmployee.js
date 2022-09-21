@@ -7,6 +7,9 @@ import { getIndexByValue } from './../functions.js';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
+import Navigation from './../../../Navigation/Navigation.js';
+
 
 function UpdateEmployee(){
 
@@ -53,61 +56,83 @@ function UpdateEmployee(){
 
     return(
         <>
-            <h1>Update Employee</h1>
-            <Button href="/projects/planting_management">Planting Management</Button>  
-            <Table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{employee._id}</td>
-                        <td>{employee.first_name}</td>
-                        <td>{employee.last_name}</td>
-                        <td>{employee.email}</td>
-                    </tr>
-                </tbody>
-            </Table>
-            <Form onSubmit={e => {handleSubmit(e)}}>
-                <Form.Group>
-                    <Form.Label>First Name</Form.Label>
-                    <Form.Control type='text' placeholder='Enter first name' value={newFirstName} onChange={e => setNewFirstName(e.target.value)}/>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Last Name</Form.Label>
-                    <Form.Control type='text' placeholder='Enter last name' value={newLastName} onChange={e => setNewLastName(e.target.value)}/>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type='email' placeholder='Enter email' value={newEmail} onChange={e => setNewEmail(e.target.value)}/>
-                </Form.Group>
-                {roles.map((role) => 
-                    {
-                        if(employee.roles.includes(role._id)){
-                            return(
-                                <Form.Group>
-                                    <Form.Check type="checkbox" label={role.name} name={role._id} onChange={handleChangeRolesCheckbox} defaultChecked={true}/>
-                                </Form.Group>
-                            )
-                        } else {
-                            return (
-                                <Form.Group>
-                                    <Form.Check type="checkbox" label={role.name} name={role._id} onChange={handleChangeRolesCheckbox} defaultChecked={false}/>
-                                </Form.Group>
-                            )
-                        }
-                    }  
-                       
-                    
-                )}
-                <Button variant='primary' type='submit'>Update Employee</Button>
-            </Form> 
-            
+            <div className="App pm">
+                <Navigation 
+                    bg = "dark"
+                    expand = 'lg'
+                    title = {["Planting Management", "/projects/planting_management"]}
+                    links = {[
+                        ["About", "/projects/planting_management/about"],
+                        ["Employees", "/projects/planting_management/employees"],
+                        ["Crews", "/projects/planting_management/crews"], 
+                        // ["Create Crews", "/projects/planting_management/crews/create"],
+                        ]}
+                />
+                <div className='container'>
+                    <Card className='pm_card pm_card_base'>
+                        <Card.Title><h1>Update Employee</h1></Card.Title>
+                        <Card.Body>
+                            <Table>
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{employee.first_name}</td>
+                                        <td>{employee.last_name}</td>
+                                        <td>{employee.email}</td>
+                                    </tr>
+                                </tbody>
+                            </Table>
+                            <Form onSubmit={e => {handleSubmit(e)}} className="pm_form">
+                                <div className='row'>
+                                    <div className='col'>
+                                        <Form.Group>
+                                            <Form.Label>First Name</Form.Label>
+                                            <Form.Control type='text' placeholder='Enter first name' value={newFirstName} onChange={e => setNewFirstName(e.target.value)}/>
+                                        </Form.Group>
+                                    </div>
+                                    <div className='col'>
+                                        <Form.Group>
+                                            <Form.Label>Last Name</Form.Label>
+                                            <Form.Control type='text' placeholder='Enter last name' value={newLastName} onChange={e => setNewLastName(e.target.value)}/>
+                                        </Form.Group>
+                                    </div>
+                                    <div className='col'>
+                                        <Form.Group>
+                                            <Form.Label>Email</Form.Label>
+                                            <Form.Control type='email' placeholder='Enter email' value={newEmail} onChange={e => setNewEmail(e.target.value)}/>
+                                        </Form.Group>
+                                    </div>                              
+                                </div>
+                                
+                                {roles.map((role) => 
+                                    {
+                                        if(employee.roles.includes(role._id)){
+                                            return(
+                                                <Form.Group>
+                                                    <Form.Check type="checkbox" label={role.name} name={role._id} onChange={handleChangeRolesCheckbox} defaultChecked={true}/>
+                                                </Form.Group>
+                                            )
+                                        } else {
+                                            return (
+                                                <Form.Group>
+                                                    <Form.Check type="checkbox" label={role.name} name={role._id} onChange={handleChangeRolesCheckbox} defaultChecked={false}/>
+                                                </Form.Group>
+                                            )
+                                        }
+                                    }  
+                                )}
+                                <Button variant='success' type='submit'>Update Employee</Button>
+                            </Form> 
+                        </Card.Body>
+                    </Card>
+                </div>
+            </div>   
         </>
     )
 }

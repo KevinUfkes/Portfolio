@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <div className="App">
-        <Navigation 
+        <Navigation class="app_nav"
           bg = "light"
           expand = 'lg'
           title = {["kevinufkes.ca", "/"]}

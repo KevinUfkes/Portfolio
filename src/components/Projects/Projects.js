@@ -1,4 +1,3 @@
-import './Projects.css'
 import React from 'react'
 import ProjectsNavigation from './ProjectsNavigation.js'
 

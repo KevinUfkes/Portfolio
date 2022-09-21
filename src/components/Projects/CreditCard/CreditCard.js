@@ -101,7 +101,7 @@ function CreditCard () {
                             <Card>
                                 <Card.Header>
                                     <Row>
-                                        <p>We only accept Master and Visa</p>
+                                        <p>We only accept Mastercard and Visa</p>
                                     </Row>    
                                     <Row>
                                         <Col className='card-img'>
@@ -273,14 +273,14 @@ function CreditCard () {
                                 <Row>
                                     <Col sm={{span: 3, offset:2}} fluid>
                                         <Form.Control 
-                                            className='btn back'
+                                            className='cc_btn cc_back'
                                             type="button"
                                             value="Back"
                                         ></Form.Control>
                                     </Col>
                                     <Col sm={{span: 3, offset:1}} fluid>
                                         <Form.Control
-                                            className='btn'
+                                            className='cc_btn'
                                             type='submit'
                                             value='Continue'
                                             disabled={(formIsValid) ? false : true}

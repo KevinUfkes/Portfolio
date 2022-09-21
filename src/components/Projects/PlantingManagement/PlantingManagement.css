@@ -1,0 +1,49 @@
+
+
+.pm{
+    height: 100vh;
+    background-image: url("./../../../images/dirt.jpg");
+}
+
+.pm_img{
+    width: 80%;
+    border-radius: 15px;
+    box-shadow: 5px 5px 20px;
+    margin: 20px;
+}
+
+.pm_card{
+    box-shadow: 5px 5px 20px ;
+    margin-top: 20px;
+}
+
+.pm_card_base {
+    padding: 30px;
+}
+
+.pm_card_title {
+    margin-top: 10px;
+}
+
+.pm_form {
+    text-align: left;
+}
+
+.pm_btn_create {
+    float: left;
+    margin-bottom: 20px
+}
+
+.table {
+    border-radius: 10px;
+}
+
+.pm_title {
+    background-color: rgb(201, 178, 154);
+    /* display: inline-block; */
+    padding: 10px 20px;
+    /* border-radius: 7px; */
+    /* margin-top: 25px; */
+}
+
+

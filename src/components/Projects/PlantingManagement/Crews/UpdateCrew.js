@@ -7,6 +7,8 @@ import { getIndexByValue } from './../functions.js';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
+import Navigation from './../../../Navigation/Navigation.js';
 
 function UpdateCrew(){
 
@@ -55,53 +57,87 @@ function UpdateCrew(){
 
     return(
         <>
-            <h1>Update Crew</h1>
-            <Form onSubmit={e => {handleSubmit(e)}}>
-                <Form.Group>
-                    <Form.Label>Crew Name</Form.Label>
-                    <Form.Control type='text' placeholder='Enter crew name' value={crewName} onChange={e => setCrewName(e.target.value)}/>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Crewboss</Form.Label>
-                    <Form.Select onChange={e => setCrewboss(e.target.value)} defaultValue={crew.crewboss}>
-                        <option disabled selected value> Select a Crewboss</option>
-                        {
-                            employees.map((employee) => {
-                                if (employee.roles.includes(crewbossRoleId) && (employee.crew.length===0 || employee.crew==crew._id)) {
-                                    return (
-                                        <option value={employee._id}>{employee.first_name} {employee.last_name}</option>
-                                    )
-                                } 
-                            })
-                        }
-                    </Form.Select>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Planters</Form.Label>
-                </Form.Group>
-                {
-                    employees.map((employee) => {
-                        if( employee.roles.includes(planterRoleId) && (employee.crew.length===0 || employee.crew[0]==crew._id)) {
-                            {
-                                if(employee.crew==crew._id ){
-                                    return(
+            <div className="App pm">
+                <Navigation 
+                    bg = "dark"
+                    expand = 'lg'
+                    title = {["Planting Management", "/projects/planting_management"]}
+                    links = {[
+                        ["About", "/projects/planting_management/about"],
+                        ["Employees", "/projects/planting_management/employees"],
+                        ["Crews", "/projects/planting_management/crews"], 
+                        // ["Create Crews", "/projects/planting_management/crews/create"],
+                        ]}
+                />
+                <div className='container'>
+                    <Card className='pm_card pm_card_base'>
+                        <Card.Title><h1>Update Crew</h1></Card.Title>
+                        <Card.Body>
+                            <Form onSubmit={e => {handleSubmit(e)}} className="pm_form">
+                                <div className='row'>
+                                    <div className='col'>
                                         <Form.Group>
-                                            <Form.Check type="checkbox" label={employee.first_name + " " + employee.last_name} name={employee._id} onChange={handleChangePlantersCheckbox} defaultChecked={true}/>
+                                            <Form.Label>Crew Name</Form.Label>
+                                            <Form.Control type='text' placeholder='Enter crew name' value={crewName} onChange={e => setCrewName(e.target.value)}/>
                                         </Form.Group>
-                                    )
-                                } else{
-                                    return(
+                                    </div>
+                                    <div className='col'>
                                         <Form.Group>
-                                            <Form.Check type="checkbox" label={employee.first_name + " " + employee.last_name} name={employee._id} onChange={handleChangePlantersCheckbox} defaultChecked={false}/>
+                                            <Form.Label>Crewboss</Form.Label>
+                                            <Form.Select onChange={e => setCrewboss(e.target.value)} defaultValue={crew.crewboss}>
+                                                <option disabled selected value> Select a Crewboss</option>
+                                                {
+                                                    employees.map((employee) => {
+                                                        if (employee.roles.includes(crewbossRoleId) && (employee.crew.length===0 || employee.crew==crew._id)) {
+                                                            return (
+                                                                <option value={employee._id}>{employee.first_name} {employee.last_name}</option>
+                                                            )
+                                                        } 
+                                                    })
+                                                }
+                                            </Form.Select>
                                         </Form.Group>
-                                    )
-                                }
-                            }
-                        }
-                    })
-                }
-                <Button variant='primary' type='submit'>Update Crew</Button>
-            </Form> 
+                                    </div>
+                                    <div className='col'>
+                                        <Form.Group>
+                                            <Form.Label>Planters</Form.Label>
+                                            {
+                                                employees.map((employee) => {
+                                                    if( employee.roles.includes(planterRoleId) && (employee.crew.length===0 || employee.crew[0]==crew._id)) {
+                                                        {
+                                                            if(employee.crew==crew._id ){
+                                                                return(
+                                                                    <>
+                                                                        <Form.Check type="checkbox" label={employee.first_name + " " + employee.last_name} name={employee._id} onChange={handleChangePlantersCheckbox} defaultChecked={true}/>
+                                                                    </>
+                                                                )
+                                                            } else{
+                                                                return(
+                                                                    <>
+                                                                        <Form.Check type="checkbox" label={employee.first_name + " " + employee.last_name} name={employee._id} onChange={handleChangePlantersCheckbox} defaultChecked={false}/>
+                                                                    </>
+                                                                )
+                                                            }
+                                                        }
+                                                    }
+                                                })
+                                            }
+                                        </Form.Group>
+                                    </div>
+                                </div>
+                               
+                                
+                                
+                                <Button variant='success' type='submit'>Update Crew</Button>
+                            </Form> 
+                        </Card.Body>
+                    </Card>
+                </div>
+                
+                
+            </div>
+            
+            
         </>
     )
 }

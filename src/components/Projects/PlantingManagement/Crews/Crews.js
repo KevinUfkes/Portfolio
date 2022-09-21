@@ -1,9 +1,13 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect, useState } from 'react';
 import { getCrews, deleteCrew } from '../MongoRoutes/CrewRoutes.js';
 import { getEmployees } from '../MongoRoutes/EmployeeRoutes.js'
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import Navigation from './../../../Navigation/Navigation.js';
+
 
 
 function Crews() {
@@ -29,10 +33,24 @@ function Crews() {
 
     return(
         <>
-            <h1>Crews</h1>
-            <Button href="/projects/planting_management">Planting Management</Button>   
-            <Button href="/projects/planting_management/crews/create">Create Crew</Button>
-            <Table>
+          <div className='App pm'>
+            <Navigation 
+              bg = "dark"
+              expand = 'lg'
+              title = {["Planting Management", "/projects/planting_management"]}
+              links = {[
+                  ["About", "/projects/planting_management/about"],
+                  ["Employees", "/projects/planting_management/employees"],
+                  ["Crews", "/projects/planting_management/crews"], 
+                  // ["Create Crews", "/projects/planting_management/crews/create"],
+                ]}
+            />
+            <div className='container'>
+              <Card className='pm_card pm_card_base'>
+                <Card.Title><h1>Crews</h1></Card.Title>
+                <Card.Body>
+                  <Button className="pm_btn_create" href="/projects/planting_management/crews/create" variant="success">Create Crew</Button>
+                  <Table  striped bordered hover className='pm_table'>
                     <thead>
                       <tr>
                         <th>Crew Name</th>
@@ -50,7 +68,7 @@ function Crews() {
                             <td>{crew.name}</td>
                             <td>
                               {employees.map((employee) => {
-                                if(crew.crewboss==employee._id) return (<>{employee.first_name} {employee.last_name}</>)
+                                if(crew.crewboss==employee._id) return (<div>{employee.first_name} {employee.last_name}</div>)
                               })}
                             </td>
                             <td>
@@ -63,14 +81,21 @@ function Crews() {
                               </ul>
                             </td>
                             <td><Button>Detials</Button></td>
-                            <td><Link to="/projects/planting_management/crews/update_crew" state={{crew_state: JSON.stringify(crew)}}>Update</Link></td>
-                            <td><Button value={crew._id} onClick={e => deleteCrew(crew._id)}>Delete</Button></td>
+                            <td><Link to="/projects/planting_management/crews/update_crew" state={{crew_state: JSON.stringify(crew)}}><Button variant="warning">Update</Button></Link></td>
+                            <td><Button value={crew._id} onClick={e => deleteCrew(crew._id)} variant="danger">Delete</Button></td>
                           </tr>
                         )
                       }
-
                     </tbody>
                   </Table>
+                </Card.Body>
+              </Card>
+              
+              
+            </div>
+            
+          </div>
+            
         </>
     )
 }

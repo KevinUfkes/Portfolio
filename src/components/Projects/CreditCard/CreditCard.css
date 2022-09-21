@@ -1,11 +1,11 @@
 
 body{
-    font-family: 'Lato';
+    /* font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
-    color: #2C3642;
+    color: #2C3642; */
 }
 
 h3{
@@ -62,12 +62,12 @@ img{
 }
 
 .required::after{
-    font-family: 'Roboto';
+    /* font-family: 'Roboto';
     content:"*" ;
-    color:red   
+    color:red    */
 }
 
-.btn{
+.cc_btn{
     margin-top: 30px;
     padding: 11px, 34px, 11px, 34px;
     width: 145px;
@@ -77,25 +77,25 @@ img{
     color:white;
 }
 
-.btn:disabled{
+.cc_btn:disabled{
     border: 0px;
     background-color: #C8CDD2;
     color:white;
 
 }
 
-.btn:hover{
+.cc_btn:hover{
     background-color: #3C727E;
     color:white;
 }
 
-.back{
+.cc_back{
     background-color: white;
     color: #127C95;
     border: 1px solid #4790A1;
 
 }
-.back:hover{
+.cc_back:hover{
     background-color: white;
     color: #3C727E;
     border: 1px solid #3C727E;
