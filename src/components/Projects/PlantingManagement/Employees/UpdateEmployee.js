@@ -8,7 +8,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import Navigation from './../../../Navigation/Navigation.js';
+import PMNavigation from '../PMNavigation/PMNavigation.js';
 
 
 function UpdateEmployee(){
@@ -55,17 +55,7 @@ function UpdateEmployee(){
     return(
         <>
             <div className="App pm">
-                <Navigation 
-                    bg = "dark"
-                    expand = 'lg'
-                    title = {["Planting Management", "/projects/planting_management"]}
-                    links = {[
-                        ["About", "/projects/planting_management/about"],
-                        ["Employees", "/projects/planting_management/employees"],
-                        ["Crews", "/projects/planting_management/crews"], 
-                        // ["Create Crews", "/projects/planting_management/crews/create"],
-                        ]}
-                />
+                <PMNavigation/>
                 <div className='container'>
                     <Card className='pm_card pm_card_base'>
                         <Card.Title><h1>Update Employee</h1></Card.Title>

@@ -1,22 +1,12 @@
 import React from 'react';
-import Navigation from './../../../Navigation/Navigation.js';
+import PMNavigation from '../PMNavigation/PMNavigation.js';
 import Card from 'react-bootstrap/Card'
 
 function PMAbout() {
     return(
         <>
             <div className='pm'>
-                <Navigation 
-                    bg = "dark"
-                    expand = 'lg'
-                    title = {["Planting Management", "/projects/planting_management"]}
-                    links = {[
-                        ["About", "/projects/planting_management/about"],
-                        ["Employees", "/projects/planting_management/employees"],
-                        ["Crews", "/projects/planting_management/crews"], 
-                        // ["Create Crews", "/projects/planting_management/crews/create"],
-                    ]}
-                />
+                <PMNavigation/>
                 <div className="App">
                     <div className='container'>
                         <div className='row'>

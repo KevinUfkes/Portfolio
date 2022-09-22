@@ -6,7 +6,7 @@ import { getIndexByValue } from './../functions.js';
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Navigation from './../../../Navigation/Navigation.js';
+import PMNavigation from '../PMNavigation/PMNavigation.js';
 import Card from 'react-bootstrap/Card';
 
 
@@ -53,17 +53,7 @@ function CreateCrew() {
     return(
         <>
             <div className="App pm">
-                <Navigation 
-                    bg = "dark"
-                    expand = 'lg'
-                    title = {["Planting Management", "/projects/planting_management"]}
-                    links = {[
-                        ["About", "/projects/planting_management/about"],
-                        ["Employees", "/projects/planting_management/employees"],
-                        ["Crews", "/projects/planting_management/crews"], 
-                        // ["Create Crews", "/projects/planting_management/crews/create"],
-                        ]}
-                />
+                <PMNavigation/>
                 <div className='container'>
                     <Card className='pm_card pm_card_base'>
                         <Card.Title><h1>Create Crew</h1></Card.Title>
