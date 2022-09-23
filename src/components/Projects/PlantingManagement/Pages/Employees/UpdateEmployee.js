@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { updateEmployee } from '../MongoRoutes/EmployeeRoutes.js';
-import { getRoles } from '../MongoRoutes/RoleRoutes.js';
+import { updateEmployee } from '../../MongoRoutes/EmployeeRoutes.js';
+import { getRoles } from '../../MongoRoutes/RoleRoutes.js';
 
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getIndexByValue } from './../functions.js';
+import { getIndexByValue } from '../../Functions/functions.js';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import PMNavigation from '../PMNavigation/PMNavigation.js';
+import PMNavigation from './../../Components/PMNavigation/PMNavigation.js';
 
 
 function UpdateEmployee(){

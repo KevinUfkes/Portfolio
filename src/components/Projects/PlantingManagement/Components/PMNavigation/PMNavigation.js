@@ -1,5 +1,5 @@
 import React from 'react';
-import Navigation from '../../../Navigation/Navigation.js';
+import Navigation from './../../../../Navigation/Navigation.js';
 
 function PMNavigation() {
     return(

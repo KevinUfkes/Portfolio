@@ -10,14 +10,14 @@ import LOTRAPI from './../Projects/LOTRAPI/LOTRAPI.js';
 import CreditCard from './../Projects/CreditCard/CreditCard.js';
 import CCAbout from '../Projects/CreditCard/CCAbout';
 import PlantingManagement from '../Projects/PlantingManagement/PlantingManagement.js';
-import PMNavigation from '../Projects/PlantingManagement/PMNavigation/PMNavigation.js';
-import PMAbout from './../Projects/PlantingManagement/About/PMAbout.js'
-import Employees from '../Projects/PlantingManagement/Employees/Employees';
-import UpdateEmployee from '../Projects/PlantingManagement/Employees/UpdateEmployee.js';
-import Crews from '../Projects/PlantingManagement/Crews/Crews.js';
-import CreateCrew from '../Projects/PlantingManagement/Crews/CreateCrew.js';
-import UpdateCrew from '../Projects/PlantingManagement/Crews/UpdateCrew.js';
-import Contracts from './../Projects/PlantingManagement/Contracts/Contracts.js'
+import PMNavigation from '../Projects/PlantingManagement/Components/PMNavigation/PMNavigation.js';
+import PMAbout from '../Projects/PlantingManagement/Pages/About/PMAbout.js'
+import Employees from '../Projects/PlantingManagement/Pages/Employees/Employees';
+import UpdateEmployee from '../Projects/PlantingManagement/Pages/Employees/UpdateEmployee.js';
+import Crews from '../Projects/PlantingManagement/Pages/Crews/Crews.js';
+import CreateCrew from '../Projects/PlantingManagement/Pages/Crews/CreateCrew.js';
+import UpdateCrew from '../Projects/PlantingManagement/Pages/Crews/UpdateCrew.js';
+import Contracts from './../Projects/PlantingManagement/Pages/Contracts/Contracts.js'
 
 
 function App() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import PMNavigation from '../PMNavigation/PMNavigation.js';
+import PMNavigation from '../../Components/PMNavigation/PMNavigation.js';
 import Card from 'react-bootstrap/Card'
 
 function PMAbout() {

@@ -1,47 +1,43 @@
 import React, { useEffect, useState } from 'react'
-import { updateCrew } from '../MongoRoutes/CrewRoutes.js';
-import { getEmployees } from '../MongoRoutes/EmployeeRoutes.js';
+import { useNavigate } from 'react-router-dom';
+import { getEmployees } from './../../MongoRoutes/EmployeeRoutes.js';
+import { createCrew } from './../../MongoRoutes/CrewRoutes.js'
+import { getIndexByValue } from '../../Functions/functions.js';
 
-import { useLocation, useNavigate } from 'react-router-dom';
-import { getIndexByValue } from './../functions.js';
-import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import PMNavigation from './../../Components/PMNavigation/PMNavigation.js';
 import Card from 'react-bootstrap/Card';
-import PMNavigation from '../PMNavigation/PMNavigation.js';
 
-function UpdateCrew(){
 
-    const location = useLocation()
-    const navigate = useNavigate()
-    const { crew_state } = location.state;
-    const crew = JSON.parse(crew_state)
+function CreateCrew() {
 
     const [employees, setEmployees] = useState([]);
-    const [crewName, setCrewName] = useState(crew.name);
-    const [newPlanters, setNewPlanters] = useState([]);
-    const [crewboss, setCrewboss] = useState(crew.crewboss);
+    const [crewName, setCrewName] = useState([]);
+    const [planters, setPlanters] = useState([]);
+    const [crewboss, setCrewboss] = useState([]);
 
+    const navigate = useNavigate()
     const planterRoleId = "6320b9ee51a8b68cfaf26c52";
     const crewbossRoleId = "6320b9fe51a8b68cfaf26c53";
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        updateCrew(crew._id, crewName, crewboss, newPlanters)
+        createCrew(crewName, crewboss, planters)
         navigate('/projects/planting_management/crews')
     }
 
-    const handleChangePlantersCheckbox = (e) => {
+    const handleChangeRolesCheckbox = (e) => {
+       
         console.log("Checked: " + e.target.checked)
         console.log("Name: " + e.target.name)
         if(e.target.checked){
             
-            newPlanters.push(e.target.name)
+            planters.push(e.target.name)
         } else{
-            let loc = getIndexByValue(newPlanters, e.target.name);
-            if(loc != -1) newPlanters.splice(loc, 1);
+            let loc = getIndexByValue(planters, e.target.name);
+            if(loc != -1) planters.splice(loc, 1);
         }
-        console.log(newPlanters)
     }
 
     useEffect(() => {
@@ -50,7 +46,6 @@ function UpdateCrew(){
         }
 
         loadEmployees()
-        setNewPlanters(crew.planters)
 
         return;
     }, []);
@@ -61,7 +56,7 @@ function UpdateCrew(){
                 <PMNavigation/>
                 <div className='container'>
                     <Card className='pm_card pm_card_base'>
-                        <Card.Title><h1>Update Crew</h1></Card.Title>
+                        <Card.Title><h1>Create Crew</h1></Card.Title>
                         <Card.Body>
                             <Form onSubmit={e => {handleSubmit(e)}} className="pm_form">
                                 <div className='row'>
@@ -74,11 +69,11 @@ function UpdateCrew(){
                                     <div className='col'>
                                         <Form.Group>
                                             <Form.Label>Crewboss</Form.Label>
-                                            <Form.Select onChange={e => setCrewboss(e.target.value)} defaultValue={crew.crewboss}>
+                                            <Form.Select onChange={e => setCrewboss(e.target.value)}>
                                                 <option disabled selected value> Select a Crewboss</option>
                                                 {
                                                     employees.map((employee) => {
-                                                        if (employee.roles.includes(crewbossRoleId) && (employee.crew.length===0 || employee.crew==crew._id)) {
+                                                        if (employee.roles.includes(crewbossRoleId) && employee.crew.length===0) {
                                                             return (
                                                                 <option value={employee._id}>{employee.first_name} {employee.last_name}</option>
                                                             )
@@ -93,38 +88,27 @@ function UpdateCrew(){
                                             <Form.Label>Planters</Form.Label>
                                             {
                                                 employees.map((employee) => {
-                                                    if( employee.roles.includes(planterRoleId) && (employee.crew.length===0 || employee.crew[0]==crew._id)) {
-                                                        {
-                                                            if(employee.crew==crew._id ){
-                                                                return(
-                                                                    <>
-                                                                        <Form.Check type="checkbox" label={employee.first_name + " " + employee.last_name} name={employee._id} onChange={handleChangePlantersCheckbox} defaultChecked={true}/>
-                                                                    </>
-                                                                )
-                                                            } else{
-                                                                return(
-                                                                    <>
-                                                                        <Form.Check type="checkbox" label={employee.first_name + " " + employee.last_name} name={employee._id} onChange={handleChangePlantersCheckbox} defaultChecked={false}/>
-                                                                    </>
-                                                                )
-                                                            }
-                                                        }
+                                                    if( employee.roles.includes(planterRoleId) && employee.crew.length===0) {
+                                                        return (
+                                                            <>
+                                                                <>
+                                                                    <Form.Check type="checkbox" label={employee.first_name + " " + employee.last_name} name={employee._id} onChange={handleChangeRolesCheckbox}/>
+                                                                </>
+                                                            </>
+                                
+                                                        )
                                                     }
                                                 })
                                             }
                                         </Form.Group>
                                     </div>
                                 </div>
-                               
-                                
-                                
-                                <Button variant='success' type='submit'>Update Crew</Button>
+                                <Button variant='success' type='submit'>Create Crew</Button>
                             </Form> 
                         </Card.Body>
                     </Card>
                 </div>
-                
-                
+
             </div>
             
             
@@ -132,4 +116,4 @@ function UpdateCrew(){
     )
 }
 
-export default UpdateCrew;
+export default CreateCrew;

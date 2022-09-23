@@ -1,12 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect, useState } from 'react';
-import { getContracts, deleteContract, createContract } from '../MongoRoutes/ContractRoutes.js';
+import { getContracts, deleteContract, createContract } from '../../MongoRoutes/ContractRoutes.js';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
-import PMNavigation from '../PMNavigation/PMNavigation.js';
+import PMNavigation from './../../Components/PMNavigation/PMNavigation.js';
 
 
 

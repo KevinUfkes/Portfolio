@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import marthas_crew from './../../../images/marthas_crew.jpg'
 import React from 'react'
 import Navigation from '../../Navigation/Navigation.js';
-import PMNavigation from './PMNavigation/PMNavigation.js'
+import PMNavigation from './Components/PMNavigation/PMNavigation.js'
 import Card from 'react-bootstrap/Card';
 
 

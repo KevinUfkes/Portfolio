@@ -1,12 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect, useState } from 'react';
-import { getCrews, deleteCrew } from '../MongoRoutes/CrewRoutes.js';
-import { getEmployees } from '../MongoRoutes/EmployeeRoutes.js'
+import { getCrews, deleteCrew } from './../../MongoRoutes/CrewRoutes.js'
+import { getEmployees } from './../../MongoRoutes/EmployeeRoutes.js'
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import PMNavigation from '../PMNavigation/PMNavigation.js';
+import PMNavigation from './../../Components/PMNavigation/PMNavigation.js';
 
 
 
