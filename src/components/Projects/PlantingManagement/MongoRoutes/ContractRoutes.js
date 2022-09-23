@@ -12,6 +12,17 @@ export async function getContracts(){
         return contracts;
 }
 
+export async function createContract(company_name, contract_code) {
+  axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/contract/create`, {
+    company_name: company_name,
+    contract_code: contract_code,
+    blocks: []
+  }).then(response => {
+    console.log(response)
+    window.location.reload()
+  })
+}
+
 export async function updateContract(contract_id, company_name, contract_code, blocks) {
     axios.put(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/contract/update`, {
         _id: contract_id,

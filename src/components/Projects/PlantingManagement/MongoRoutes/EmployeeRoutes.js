@@ -13,16 +13,16 @@ export async function getEmployees() {
 }
 
 export async function createEmployee(first_name, last_name, email, roles) {
-    axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employee`, {
-      first_name: first_name,
-      last_name: last_name,
-      email: email,
-      roles: roles,
-      crew: []
-    }).then(response => {
-      console.log(response)
-      window.location.reload()
-    })
+  axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employee`, {
+    first_name: first_name,
+    last_name: last_name,
+    email: email,
+    roles: roles,
+    crew: []
+  }).then(response => {
+    console.log(response)
+    window.location.reload()
+  })
 }
 
 export async function updateEmployee(employee_id, first_name, last_name, email, roles, crew) {
