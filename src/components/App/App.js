@@ -18,6 +18,7 @@ import Crews from '../Projects/PlantingManagement/Pages/Crews/Crews.js';
 import CreateCrew from '../Projects/PlantingManagement/Pages/Crews/CreateCrew.js';
 import UpdateCrew from '../Projects/PlantingManagement/Pages/Crews/UpdateCrew.js';
 import Contracts from './../Projects/PlantingManagement/Pages/Contracts/Contracts.js'
+import UpdateContract from './../Projects/PlantingManagement/Pages/Contracts/UpdateContract.js';
 
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
             <Route path="/projects/planting_management/crews/create" element={<CreateCrew/>}/>
             <Route path="/projects/planting_management/crews/update_crew" element={<UpdateCrew/>}/>
             <Route path="/projects/planting_management/contracts" element={<Contracts/>}/>
+            <Route path="/projects/planting_management/contracts/update_contract" element={<UpdateContract/>}/>
             <Route path="/" element={ <Profile/> }/>
           </Routes>
         </Router>

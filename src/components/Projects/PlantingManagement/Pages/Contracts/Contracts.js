@@ -90,7 +90,7 @@ function Contracts() {
                                   <td>{contract.contract_code}</td>
                                   <td>{contract.blocks}</td>
                                   <td><Button>Details</Button></td>
-                                  <td><Link to="/projects/planting_management/crews/update_contract" state={{contract_state: JSON.stringify(contract)}}><Button variant="warning">Update</Button></Link></td>
+                                  <td><Link to="/projects/planting_management/contracts/update_contract" state={{contract_state: JSON.stringify(contract)}}><Button variant="warning">Update</Button></Link></td>
                                   <td><Button value={contract._id} onClick={e => deleteContract(contract._id)} variant="danger">Delete</Button></td>
                                 </tr>
                               )
