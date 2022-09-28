@@ -12,6 +12,7 @@ function PMNavigation() {
             ["Employees", "/projects/planting_management/employees"],
             ["Crews", "/projects/planting_management/crews"], 
             ["Contracts", "/projects/planting_management/contracts"],
+            ["Blocks", "/projects/planting_management/blocks"],
             ]}
         />
     )
