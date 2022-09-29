@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useEffect, useState } from 'react';
 import { getContracts, deleteContract, createContract } from '../../MongoRoutes/ContractRoutes.js';
+import { getBlocks } from '../../MongoRoutes/BlockRoutes.js';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
@@ -13,6 +14,7 @@ import PMNavigation from './../../Components/PMNavigation/PMNavigation.js';
 function Contracts() {
 
   const [contracts, setContracts] = useState([]);
+  const [blocks, setBlocks] = useState([]);
   const [newCompanyName, setNewCompanyName] = useState([]);
   const [newContractCode, setNewContractCode] = useState([]);
 
@@ -25,13 +27,18 @@ function Contracts() {
 
   useEffect(() => {
 
-      async function loadContracts(){
-          setContracts(await getContracts())
-      }
+    async function loadContracts(){
+        setContracts(await getContracts())
+    }
 
-      loadContracts()
+    async function loadBlocks(){
+      setBlocks(await getBlocks())
+    }
 
-      return;
+    loadContracts()
+    loadBlocks()
+
+    return;
 
   }, [contracts.length]);
 
@@ -58,10 +65,6 @@ function Contracts() {
                               <Form.Label>Contract Code</Form.Label>
                               <Form.Control type='text' placeholder='Enter contract code' value={newContractCode} onChange={e => setNewContractCode(e.target.value)}/>
                             </Form.Group>
-                            {/* <Form.Group>
-                              <Form.Label>Email</Form.Label>
-                              <Form.Control type='email' placeholder='Enter email' value="" onChange=""/>
-                            </Form.Group> */}
                           <Button variant='success' type='submit'>Add Contract</Button>
                         </Form> 
                       </Card.Body>
@@ -71,7 +74,7 @@ function Contracts() {
                     <Card className='pm_card'>
                       <Card.Body>
                         <Button className="pm_btn_create" href="/projects/planting_management/crews/create" variant="success">Create Contract</Button>
-                        <Table  striped bordered hover className='pm_table'>
+                        <Table striped bordered hover className='pm_table'>
                           <thead>
                             <tr>
                               <th>Company Name</th>
@@ -88,7 +91,20 @@ function Contracts() {
                                 <tr>
                                   <td>{contract.company_name}</td>
                                   <td>{contract.contract_code}</td>
-                                  <td>{contract.blocks}</td>
+                                  <td>
+                                    <ul>
+                                      {
+                                        blocks.map((block) => {
+                                          if(contract.blocks.includes(block._id)){
+                                            return (
+                                              <li>{block.block_code}</li>
+                                            )
+                                          }
+                                        })
+                                      }
+                                    </ul>
+                                    
+                                  </td>
                                   <td><Button>Details</Button></td>
                                   <td><Link to="/projects/planting_management/contracts/update_contract" state={{contract_state: JSON.stringify(contract)}}><Button variant="warning">Update</Button></Link></td>
                                   <td><Button value={contract._id} onClick={e => deleteContract(contract._id)} variant="danger">Delete</Button></td>

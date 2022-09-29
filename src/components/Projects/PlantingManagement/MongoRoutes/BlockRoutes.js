@@ -24,6 +24,21 @@ export async function createBlock(block_code, area, density, price, contract) {
   })
 }
 
+export async function updateBlock(block_id, block_code, area, density, price, contract) {
+  axios.put(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/block/update`, {
+    _id: block_id,
+    data: {
+      block_code: block_code,
+      area: area,
+      density: density,
+      price: price,
+      contract: contract,
+    }
+  }).then(response => {
+      console.log(response)
+      window.location.reload()
+  })
+}
 
 export async function deleteBlock(block_id) {
   axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/block/delete`, {

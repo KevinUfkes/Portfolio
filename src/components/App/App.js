@@ -20,6 +20,7 @@ import UpdateCrew from '../Projects/PlantingManagement/Pages/Crews/UpdateCrew.js
 import Contracts from './../Projects/PlantingManagement/Pages/Contracts/Contracts.js'
 import UpdateContract from './../Projects/PlantingManagement/Pages/Contracts/UpdateContract.js';
 import Blocks from './../Projects/PlantingManagement/Pages/Blocks/Blocks.js';
+import UpdateBlock from '../Projects/PlantingManagement/Pages/Blocks/UpdateBlock.js';
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
             <Route path="/projects/planting_management/contracts" element={<Contracts/>}/>
             <Route path="/projects/planting_management/contracts/update_contract" element={<UpdateContract/>}/>
             <Route path="/projects/planting_management/blocks" element={<Blocks/>}/>
+            <Route path="/projects/planting_management/blocks" element={<UpdateBlock/>}/>
             <Route path="/" element={ <Profile/> }/>
           </Routes>
         </Router>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { updateContract } from '../../MongoRoutes/ContractRoutes.js';
-// import { getEmployees } from '../../MongoRoutes/EmployeeRoutes.js';
+import { getBlocks } from '../../MongoRoutes/BlockRoutes.js';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getIndexByValue } from '../../Functions/functions.js';
@@ -18,6 +18,7 @@ function UpdateContract(){
 
     const [companyName, setCompanyName] = useState(contract.company_name);
     const [contractCode, setContractCode] = useState(contract.contract_code);
+    const [blocks, setBlocks] = useState([]);
     const [newBlocks, setNewBlocks] = useState([]);
 
     const handleSubmit = (e) => {
@@ -26,7 +27,7 @@ function UpdateContract(){
         navigate('/projects/planting_management/contracts')
     }
 
-    const handleChangePlantersCheckbox = (e) => {
+    const handleChangeBlocksCheckbox = (e) => {
         if(e.target.checked){
             
             newBlocks.push(e.target.name)
@@ -39,13 +40,13 @@ function UpdateContract(){
 
     useEffect(() => {
 
-        console.log(contract)
-        // async function loadEmployees(){
-        //     setEmployees(await getEmployees())
-        // }
+        // console.log(contract)
+        async function loadBlocks(){
+            setBlocks(await getBlocks())
+        }
 
-        // loadEmployees()
-        // setNewPlanters(crew.planters)
+        loadBlocks()
+        setNewBlocks(contract.blocks)
 
         return;
     }, []);
@@ -73,30 +74,30 @@ function UpdateContract(){
                                         </Form.Group>
                                     </div>
                                     <div className='col'>
-                                        {/* <Form.Group>
-                                            <Form.Label>Planters</Form.Label>
+                                        <Form.Group>
+                                            <Form.Label>Blocks</Form.Label>
                                             {
-                                                employees.map((employee) => {
-                                                    if( employee.roles.includes(planterRoleId) && (employee.crew.length===0 || employee.crew[0]==crew._id)) {
+                                                blocks.map((block) => {
+                                                    // if((block.contract === "" || block.contract==contract._id)) {
                                                         {
-                                                            if(employee.crew==crew._id ){
+                                                            if(block.contract==contract._id){
                                                                 return(
                                                                     <>
-                                                                        <Form.Check type="checkbox" label={employee.first_name + " " + employee.last_name} name={employee._id} onChange={handleChangePlantersCheckbox} defaultChecked={true}/>
+                                                                        <Form.Check type="checkbox" label={block.block_code} name={block._id} onChange={handleChangeBlocksCheckbox} defaultChecked={true}/>
                                                                     </>
                                                                 )
-                                                            } else{
+                                                            } else if(block.contract === ""){
                                                                 return(
                                                                     <>
-                                                                        <Form.Check type="checkbox" label={employee.first_name + " " + employee.last_name} name={employee._id} onChange={handleChangePlantersCheckbox} defaultChecked={false}/>
+                                                                        <Form.Check type="checkbox" label={block.block_code} name={block._id} onChange={handleChangeBlocksCheckbox} defaultChecked={false}/>
                                                                     </>
                                                                 )
                                                             }
                                                         }
-                                                    }
+                                                    // }
                                                 })
                                             }
-                                        </Form.Group> */}
+                                        </Form.Group>
                                     </div>
                                 </div>
                                 <Button variant='success' type='submit'>Update Contract</Button>

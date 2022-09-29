@@ -19,18 +19,7 @@ function Blocks() {
     const [contract, setContract] = useState();
 
     const handleSubmit = (e) => {
-
-        // console.log("BlockCode: " + JSON.stringify(blockCode))
-        // console.log("Area: " + JSON.stringify(area))
-        // console.log("Density: " + JSON.strigify(density))
-        // console.log("Price: " + JSON.stringify(price))
-        // console.log("Contract: " + JSON.stringify(contract))
-        console.log("BlockCode: " + {blockCode})
-        console.log("Area: " + {area})
-        console.log("Density: " + {density})
-        console.log("Price: " + {price})
-        console.log("Contract: " + {contract})
-        createBlock(blockCode, area, density, price, contract)
+        createBlock(blockCode, parseFloat(area), parseInt(density), parseFloat(price), contract)
         e.preventDefault();
 
         // setBlockCode('')
@@ -91,7 +80,7 @@ function Blocks() {
                                                     <Form.Group>
                                                         <Form.Label>Contract Code</Form.Label>
                                                         <Form.Select onChange={e => setContract(e.target.value)}>
-                                                            <option disabled> Select a Contract Code</option>
+                                                            <option defaultValue disabled> Select a Contract Code</option>
                                                             {
                                                                 contracts.map((contract) => {
                                                                     return (
