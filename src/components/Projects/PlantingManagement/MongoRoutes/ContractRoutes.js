@@ -1,15 +1,14 @@
 import axios from 'axios';
 
 export async function getContracts(){
-    const crewsResponse = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/contracts`);
-    
-        if (!crewsResponse.ok) {
-          const message = `An error occurred: ${crewsResponse.statusText}`;
-          window.alert(message);
-          return;
-        }
-        const contracts = await crewsResponse.json();
-        return contracts;
+  const crewsResponse = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/contracts`);
+    if (!crewsResponse.ok) {
+      const message = `An error occurred: ${crewsResponse.statusText}`;
+      window.alert(message);
+      return;
+    }
+    const contracts = await crewsResponse.json();
+    return contracts;
 }
 
 export async function createContract(company_name, contract_code) {

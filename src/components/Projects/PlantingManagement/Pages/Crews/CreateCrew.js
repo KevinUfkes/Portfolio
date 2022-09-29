@@ -91,11 +91,8 @@ function CreateCrew() {
                                                     if( employee.roles.includes(planterRoleId) && employee.crew.length===0) {
                                                         return (
                                                             <>
-                                                                <>
-                                                                    <Form.Check type="checkbox" label={employee.first_name + " " + employee.last_name} name={employee._id} onChange={handleChangeRolesCheckbox}/>
-                                                                </>
+                                                                <Form.Check type="checkbox" label={employee.first_name + " " + employee.last_name} name={employee._id} onChange={handleChangeRolesCheckbox}/>
                                                             </>
-                                
                                                         )
                                                     }
                                                 })

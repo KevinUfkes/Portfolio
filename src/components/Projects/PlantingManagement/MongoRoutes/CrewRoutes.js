@@ -14,9 +14,9 @@ export async function getCrews(){
 
 export async function createCrew(name, crewboss, planters) {
     axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/crew/create`, {
-    name: name,
-    crewboss: crewboss,
-    planters: planters,
+      name: name,
+      crewboss: crewboss,
+      planters: planters,
     }).then(response => {
         console.log(response)
         window.location.reload()
