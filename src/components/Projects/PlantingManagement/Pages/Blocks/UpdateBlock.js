@@ -16,23 +16,24 @@ function UpdateBlock(){
     const { block_state } = location.state;
     const block = JSON.parse(block_state)
 
-    const [blockCode, setBlockCode] = useState();
-    const [area, setArea] = useState();
-    const [density, setDensity] = useState();
-    const [price, setPrice] = useState();
+    const [blockCode, setBlockCode] = useState(block.block_code);
+    const [area, setArea] = useState(block.area);
+    const [density, setDensity] = useState(block.density);
+    const [price, setPrice] = useState(block.price);
     const [contract, setContract] = useState(block.contract);
+    const [contracts, setContracts] = useState([]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        updateBlock(block._id, blockCode, area, density, price, contract)
+        updateBlock(block._id, blockCode, parseFloat(area), parseInt(density), parseFloat(price), contract)
         navigate('/projects/planting_management/blocks')
     }
 
     useEffect(() => {
 
-        console.log(contract)
+        console.log(block)
         async function loadContracts(){
-            setContract(await getContracts())
+            setContracts(await getContracts())
         }
 
         loadContracts()
@@ -55,21 +56,42 @@ function UpdateBlock(){
                                             <Form.Label>Block Code</Form.Label>
                                             <Form.Control type='text' placeholder='Enter block code' value={blockCode} onChange={e => setBlockCode(e.target.value)}/>
                                         </Form.Group>
+                                    </div>
+                                    <div className='col'>
                                         <Form.Group>
                                             <Form.Label>Area</Form.Label>
                                             <Form.Control type='number' placeholder='Enter area' value={area} onChange={e => setArea(e.target.value)}/>
                                         </Form.Group>
+                                    </div>
+                                    <div className='col'>
                                         <Form.Group>
                                             <Form.Label>Density</Form.Label>
                                             <Form.Control type='number' placeholder='Enter density' value={density} onChange={e => setDensity(e.target.value)}/>
                                         </Form.Group>
+                                    </div>
+                                    <div className='col'>
                                         <Form.Group>
                                             <Form.Label>Price</Form.Label>
                                             <Form.Control type='number' placeholder='Enter price' value={price} onChange={e => setPrice(e.target.value)}/>
                                         </Form.Group>
                                     </div>
-                                </div>
-                                <Button variant='success' type='submit'>Update Contract</Button>
+
+                                        <Form.Group>
+                                            <Form.Label>Contract Code</Form.Label>
+                                            <Form.Select onChange={e => setContract(e.target.value)}>
+                                                <option disabled> Select a Contract Code</option>
+                                                {
+                                                    contracts.map((contract) => {
+                                                        return (
+                                                            <option value={contract._id}>{contract.company_name} - {contract.contract_code}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </Form.Select>
+                                        </Form.Group>
+                                    </div>
+                                {/* </div> */}
+                                <Button variant='success' type='submit'>Update Block</Button>
                             </Form> 
                         </Card.Body>
                     </Card>

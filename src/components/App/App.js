@@ -63,7 +63,7 @@ function App() {
             <Route path="/projects/planting_management/contracts" element={<Contracts/>}/>
             <Route path="/projects/planting_management/contracts/update_contract" element={<UpdateContract/>}/>
             <Route path="/projects/planting_management/blocks" element={<Blocks/>}/>
-            <Route path="/projects/planting_management/blocks" element={<UpdateBlock/>}/>
+            <Route path="/projects/planting_management/blocks/update_block" element={<UpdateBlock/>}/>
             <Route path="/" element={ <Profile/> }/>
           </Routes>
         </Router>
