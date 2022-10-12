@@ -113,32 +113,34 @@ function Blocks() {
                                                     </thead>
                                                     <tbody>
                                                         {
-                                                            blocks.map((block) => 
-                                                                <tr>
-                                                                    <td>{block.block_code}</td>
-                                                                    <td>{block.area}</td>
-                                                                    <td>{block.density}</td>
-                                                                    <td>{block.price}</td>
+                                                            blocks.map((block) => {
+                                                                return(
+                                                                    <tr>
+                                                                        <td>{block.block_code}</td>
+                                                                        <td>{block.area}</td>
+                                                                        <td>{block.density}</td>
+                                                                        <td>{block.price}</td>
                                                                     
-                                                                    {
-                                                                        contracts.map((contract) => {
-                                                                            if(block.contract==""){
-                                                                                return(
-                                                                                    <td>Unassigned</td>
-                                                                                )
-                                                                            }
-                                                                            else if(block.contract == contract._id){
-                                                                                return(
-                                                                                    <td>{contract.contract_code}</td>
-                                                                                )
-                                                                            }
-                                                                        })
-                                                                    }
-                                                                    <td><Button>Details</Button></td>
-                                                                    <td><Link to="/projects/planting_management/blocks/update_block" state={{block_state: JSON.stringify(block)}}><Button variant="warning">Update</Button></Link></td>
-                                                                    <td><Button value={block._id} onClick={() => deleteBlock(block._id)} variant="danger">Delete</Button></td>
-                                                                </tr>
-                                                            )
+                                                                        {      
+                                                                            block.contract=="" &&
+                                                                            <td>Unassigned</td>
+                                                                        }
+                                                                        {
+                                                                            block.contract != "" &&
+                                                                            contracts.map((contract) => {
+                                                                                if(block.contract == contract._id){
+                                                                                    return(
+                                                                                        <td>{contract.contract_code}</td>
+                                                                                    )
+                                                                                }
+                                                                            })
+                                                                        }       
+                                                                        <td><Button>Details</Button></td>
+                                                                        <td><Link to="/projects/planting_management/blocks/update_block" state={{block_state: JSON.stringify(block)}}><Button variant="warning">Update</Button></Link></td>
+                                                                        <td><Button value={block._id} onClick={() => deleteBlock(block._id)} variant="danger">Delete</Button></td>
+                                                                    </tr>
+                                                                )
+                                                            })
                                                         }
                                                     </tbody>
                                                 </Table>
