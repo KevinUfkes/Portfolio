@@ -7,8 +7,12 @@ import About from './../About/About.js';
 import Profile from './../Profile/Profile.js';
 import Projects from './../Projects/Projects.js';
 import LOTRAPI from './../Projects/LOTRAPI/LOTRAPI.js';
+
+// Project - Credit Card Authentication
 import CreditCard from './../Projects/CreditCard/CreditCard.js';
 import CCAbout from '../Projects/CreditCard/CCAbout';
+
+// Project - Planting Management
 import PlantingManagement from '../Projects/PlantingManagement/PlantingManagement.js';
 import PMNavigation from '../Projects/PlantingManagement/Components/PMNavigation/PMNavigation.js';
 import PMAbout from '../Projects/PlantingManagement/Pages/About/PMAbout.js'
@@ -21,6 +25,10 @@ import Contracts from './../Projects/PlantingManagement/Pages/Contracts/Contract
 import UpdateContract from './../Projects/PlantingManagement/Pages/Contracts/UpdateContract.js';
 import Blocks from './../Projects/PlantingManagement/Pages/Blocks/Blocks.js';
 import UpdateBlock from '../Projects/PlantingManagement/Pages/Blocks/UpdateBlock.js';
+
+// Project Cypress
+import CypressMain from './../Projects/Cypress/CypressMain.js';
+import PMVideos from './../Projects/Cypress/PMVideos.js';
 
 
 function App() {
@@ -64,6 +72,11 @@ function App() {
             <Route path="/projects/planting_management/contracts/update_contract" element={<UpdateContract/>}/>
             <Route path="/projects/planting_management/blocks" element={<Blocks/>}/>
             <Route path="/projects/planting_management/blocks/update_block" element={<UpdateBlock/>}/>
+
+            {/* Cypress */}
+            <Route path="/projects/cypress" element={<CypressMain/>}/>
+            <Route path="/projects/cypress/pm_videos" element={<PMVideos/>}/>
+
             <Route path="/" element={ <Profile/> }/>
           </Routes>
         </Router>

@@ -13,6 +13,7 @@ function ProjectsNavigation() {
                     // ["Lord of the Rings API", "/projects/lotr-api"], 
                     ["Planting Management", "/projects/planting_management"],
                     ["Credit Card Validation", "/projects/credit-card"],
+                    ["Cypress Testing", "/projects/cypress"],
                     ]}
                 />
             </div>
