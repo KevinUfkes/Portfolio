@@ -4,7 +4,7 @@ import { getEmployees } from '../../../MongoRoutes/EmployeeRoutes.js';
 import { getCrews } from '../../../MongoRoutes/CrewRoutes.js';
 import { getContracts } from '../../../MongoRoutes/ContractRoutes.js';
 import { getBlocks } from '../../../MongoRoutes/BlockRoutes.js';
-import { CreatePlanterReport } from '../../../MongoRoutes/PlanterReportRoutes.js';
+import { createPlanterReport } from '../../../MongoRoutes/PlanterReportRoutes.js';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -17,12 +17,21 @@ function CreateReportPlanter(){
     const [employees, setEmployees] = useState([])
     const [contracts, setContracts] = useState([])
     const [blocks, setBlocks] = useState([])
+    const [planter, setPlanter] = useState()
+    const [contract, setContract] = useState()
+    const [block, setBlock] = useState()
+    const [production, setProduction] = useState([])
+
+
 
     // Create new planter report in PlanterReports collection.
     const handleSubmit = (e) => {
-        // e.preventDefault();
-        console.log(e)
-        // createPlanterReport(crewName, crewboss, planters)
+        console.log("Planter: ", planter)
+        console.log("Contract: ", contract)
+        console.log("Block: ", block)
+        console.log("Production: ", production)
+        createPlanterReport(planter, contract, block, parseInt(production))
+        e.preventDefault();
         // navigate('/projects/planting_management/crews')
     }
 
@@ -49,7 +58,7 @@ function CreateReportPlanter(){
         }
 
         loadEmployees()
-        loadCrews()
+        // loadCrews()
         loadContracts()
         loadBlocks()
   
@@ -71,51 +80,47 @@ function CreateReportPlanter(){
                                         <Card.Body>
                                             <Card.Text>   
                                                 <div className='container'>
-                                                    {
-                                                        employees.map((employee) => 
-                                                            <Form className='row'onSubmit={handleSubmit()}>
-                                                                <Form.Group className='col col-2'>
-                                                                    <Form.Label>{employee.first_name} {employee.last_name}</Form.Label>
-                                                                </Form.Group>
-                                                                <Form.Group className='col col-2'>
-                                                                    <Form.Label>Contract</Form.Label>
-                                                                    <Form.Select>
-                                                                        {
-                                                                            contracts.map((contract) => 
-                                                                                <option value={contract._id}>{contract.contract_code}</option>
-                                                                            )
-                                                                        }
-                                                                        {/* <option>Option 1</option>
-                                                                        <option>Option 2</option>
-                                                                        <option>Option 3</option> */}
-                                                                    </Form.Select>
-                                                                </Form.Group>
-                                                                <Form.Group className='col col-2'>
-                                                                    <Form.Label>Block</Form.Label>
-                                                                    <Form.Select>
-                                                                        {
-                                                                            blocks.map((block) => 
-                                                                                <option value={block._id}>{block.block_code}</option>
-                                                                            )
-                                                                        }
-                                                                        {/* <option>Option 1</option>
-                                                                        <option>Option 2</option>
-                                                                        <option>Option 3</option> */}
-                                                                    </Form.Select>
-                                                                </Form.Group>
-                                                                <Form.Group className='col col-2'>
-                                                                    <Form.Label>Production</Form.Label>
-                                                                    <Form.Control type="number"/>
-                                                                </Form.Group>
-                                                                <Form.Group className='col col-2'>
-                                                                    <Form.Control type="hidden" value={employee._id}/>
-                                                                </Form.Group>
-                                                                <div className='col col-2'>
-                                                                    <Button type="submit">Submit</Button>
-                                                                </div>
-                                                            </Form> 
-                                                        )
-                                                    }
+                                                    <Form className='row'onSubmit={e => {handleSubmit(e)}}>
+                                                        <div className='row'>
+                                                            <Form.Group className='col col-2'>
+                                                                <Form.Label>Planter</Form.Label>
+                                                                <Form.Select onChange={e => setPlanter(e.target.value)}>
+                                                                    {
+                                                                        employees.map((employee) => 
+                                                                            <option value={employee._id}>{employee.first_name} {employee.last_name}</option>
+                                                                        )
+                                                                    }
+                                                                </Form.Select>
+                                                            </Form.Group>
+                                                            <Form.Group className='col col-2'>
+                                                                <Form.Label>Contract</Form.Label>
+                                                                <Form.Select onChange={e => setContract(e.target.value)}>
+                                                                    {
+                                                                        contracts.map((contract) => 
+                                                                            <option value={contract._id}>{contract.contract_code}</option>
+                                                                        )
+                                                                    }
+                                                                </Form.Select>
+                                                            </Form.Group>
+                                                            <Form.Group className='col col-2'>
+                                                                <Form.Label>Block</Form.Label>
+                                                                <Form.Select onChange={e => setBlock(e.target.value)}>
+                                                                    {
+                                                                        blocks.map((block) => 
+                                                                            <option value={block._id}>{block.block_code}</option>
+                                                                        )
+                                                                    }
+                                                                </Form.Select>
+                                                            </Form.Group>
+                                                            <Form.Group className='col col-2'>
+                                                                <Form.Label>Production</Form.Label>
+                                                                <Form.Control type="number" value={production} onChange={e => setProduction(e.target.value)}/>
+                                                            </Form.Group>
+                                                            <div className='col col-2'>
+                                                                <Button type="submit">Submit</Button>
+                                                            </div>
+                                                        </div>
+                                                    </Form> 
                                                 </div>
                                             </Card.Text>
                                         </Card.Body>
