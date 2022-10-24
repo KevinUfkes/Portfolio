@@ -3,7 +3,8 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import { Container } from 'react-bootstrap';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Container } from 'react-bootstrap?Container';
 
 function Navigation(props) {
     return (
@@ -19,6 +20,19 @@ function Navigation(props) {
                                     <Nav.Link href={link[1]}>{link[0]}</Nav.Link>
                                 )}
                             </Nav>
+                                {
+                                    props.dropdown.length>0 &&
+
+                                    <NavDropdown title={props.dropdownTitle}>
+                                        {
+                                            props.dropdown.map((dropdown) => {
+                                                return (
+                                                    <NavDropdown.Item href={dropdown[1]}>{dropdown[0]}</NavDropdown.Item>
+                                                )
+                                            })
+                                        }
+                                    </NavDropdown>
+                                }                        
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>

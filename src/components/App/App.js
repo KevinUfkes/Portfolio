@@ -25,6 +25,8 @@ import Contracts from './../Projects/PlantingManagement/Pages/Contracts/Contract
 import UpdateContract from './../Projects/PlantingManagement/Pages/Contracts/UpdateContract.js';
 import Blocks from './../Projects/PlantingManagement/Pages/Blocks/Blocks.js';
 import UpdateBlock from '../Projects/PlantingManagement/Pages/Blocks/UpdateBlock.js';
+import PlanterReports from './../Projects/PlantingManagement/Pages/Reports/PlanterReports.js';
+import CrewReports from './../Projects/PlantingManagement/Pages/Reports/CrewReports';
 
 // Project Cypress
 import CypressMain from './../Projects/Cypress/CypressMain.js';
@@ -45,6 +47,8 @@ function App() {
             ["About", "/about"],
             ["Projects", "/projects"], 
           ]}
+          dropdownTitle = ""
+          dropdown = {[]}
         />
         <Router>
           <Routes>
@@ -72,6 +76,9 @@ function App() {
             <Route path="/projects/planting_management/contracts/update_contract" element={<UpdateContract/>}/>
             <Route path="/projects/planting_management/blocks" element={<Blocks/>}/>
             <Route path="/projects/planting_management/blocks/update_block" element={<UpdateBlock/>}/>
+            <Route path="/projects/planting_management/reports/planter_reports" element={<PlanterReports/>}/>
+            <Route path="/projects/planting_management/reports/crew_reports" element={<CrewReports/>}/>
+
 
             {/* Cypress */}
             <Route path="/projects/cypress" element={<CypressMain/>}/>
