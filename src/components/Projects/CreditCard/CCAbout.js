@@ -15,6 +15,8 @@ function CCAbout(){
                     ["About", "/projects/credit-card/about"],
                     ["Credit Card Validation", "/projects/credit-card"],
                 ]}
+                dropdown={[]}
+                dropdownTitle=""
             />
             <div className="App">
                 <div className='container'>

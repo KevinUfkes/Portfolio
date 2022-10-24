@@ -15,6 +15,8 @@ function ProjectsNavigation() {
                     ["Credit Card Validation", "/projects/credit-card"],
                     ["Cypress Testing", "/projects/cypress"],
                     ]}
+                    dropdown={[]}
+                    dropdownTitle=""
                 />
             </div>
         </>

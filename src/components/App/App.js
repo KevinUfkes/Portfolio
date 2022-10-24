@@ -25,8 +25,10 @@ import Contracts from './../Projects/PlantingManagement/Pages/Contracts/Contract
 import UpdateContract from './../Projects/PlantingManagement/Pages/Contracts/UpdateContract.js';
 import Blocks from './../Projects/PlantingManagement/Pages/Blocks/Blocks.js';
 import UpdateBlock from '../Projects/PlantingManagement/Pages/Blocks/UpdateBlock.js';
-import PlanterReports from './../Projects/PlantingManagement/Pages/Reports/PlanterReports.js';
-import CrewReports from './../Projects/PlantingManagement/Pages/Reports/CrewReports';
+import PlanterReports from '../Projects/PlantingManagement/Pages/Reports/PlanterReports/PlanterReports.js';
+import CreateReportPlanter from './../Projects/PlantingManagement/Pages/Reports/PlanterReports/CreateReportPlanter.js';
+import CrewReports from '../Projects/PlantingManagement/Pages/Reports/CrewReports/CrewReports';
+import CreateCrewReport from './../Projects/PlantingManagement/Pages/Reports/CrewReports/CreateCrewReport.js';
 
 // Project Cypress
 import CypressMain from './../Projects/Cypress/CypressMain.js';
@@ -77,7 +79,9 @@ function App() {
             <Route path="/projects/planting_management/blocks" element={<Blocks/>}/>
             <Route path="/projects/planting_management/blocks/update_block" element={<UpdateBlock/>}/>
             <Route path="/projects/planting_management/reports/planter_reports" element={<PlanterReports/>}/>
+            <Route path="/projects/planting_management/reports/create_planter_report" element={<CreateReportPlanter/>}/>
             <Route path="/projects/planting_management/reports/crew_reports" element={<CrewReports/>}/>
+            <Route path="/projects/planting_management/reports/create_crew_report" element={<CreateCrewReport/>}/>
 
 
             {/* Cypress */}

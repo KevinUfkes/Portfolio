@@ -19,7 +19,7 @@ function Navigation(props) {
                                 {props.links.map((link) => 
                                     <Nav.Link href={link[1]}>{link[0]}</Nav.Link>
                                 )}
-                            </Nav>
+                            
                                 {
                                     props.dropdown.length>0 &&
 
@@ -32,7 +32,8 @@ function Navigation(props) {
                                             })
                                         }
                                     </NavDropdown>
-                                }                        
+                                }    
+                            </Nav>                    
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>

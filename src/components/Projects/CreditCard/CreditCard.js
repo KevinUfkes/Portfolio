@@ -95,6 +95,8 @@ function CreditCard () {
                 ["About", "/projects/credit-card/about"],
                 ["Credit Card Validation", "/projects/credit-card"],
               ]}
+            dropdowns={[]}
+            dropdownTitle=""
           />
             <h1>Credit Card Validation</h1>
             {/* <hr></hr> */}
