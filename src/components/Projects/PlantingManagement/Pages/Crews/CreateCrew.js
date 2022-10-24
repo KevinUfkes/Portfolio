@@ -21,18 +21,16 @@ function CreateCrew() {
     const planterRoleId = "6320b9ee51a8b68cfaf26c52";
     const crewbossRoleId = "6320b9fe51a8b68cfaf26c53";
 
+    // Create new crew in Crews collection. Navigate to Crews page.
     const handleSubmit = (e) => {
         e.preventDefault();
         createCrew(crewName, crewboss, planters)
         navigate('/projects/planting_management/crews')
     }
-
+    
+    // Update planters array with currently checked planters.
     const handleChangeRolesCheckbox = (e) => {
-       
-        console.log("Checked: " + e.target.checked)
-        console.log("Name: " + e.target.name)
         if(e.target.checked){
-            
             planters.push(e.target.name)
         } else{
             let loc = getIndexByValue(planters, e.target.name);
@@ -41,6 +39,8 @@ function CreateCrew() {
     }
 
     useEffect(() => {
+        
+        // Load all employees from Employees collection
         async function loadEmployees(){
             setEmployees(await getEmployees())
         }

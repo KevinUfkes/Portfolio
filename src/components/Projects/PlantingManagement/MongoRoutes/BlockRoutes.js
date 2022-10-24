@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Get all blocks from collection and return as JSON
 export async function getBlocks(){
   const blocksResponse = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/blocks`);
   if (!blocksResponse.ok) {
@@ -11,6 +12,7 @@ export async function getBlocks(){
   return blocks;
 }
 
+// Create new block document in Blocks collection
 export async function createBlock(block_code, area, density, price, contract) {
   axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/block/create`, {
     block_code: block_code,
@@ -24,6 +26,7 @@ export async function createBlock(block_code, area, density, price, contract) {
   })
 }
 
+// Update block document in Blocks collection
 export async function updateBlock(block_id, block_code, area, density, price, contract) {
   axios.put(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/block/update`, {
     _id: block_id,
@@ -40,6 +43,7 @@ export async function updateBlock(block_id, block_code, area, density, price, co
   })
 }
 
+// Delete block by Id in Blocks collection
 export async function deleteBlock(block_id) {
   axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/block/delete`, {
     _id: block_id

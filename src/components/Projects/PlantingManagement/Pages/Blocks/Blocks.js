@@ -18,23 +18,20 @@ function Blocks() {
     const [price, setPrice] = useState();
     const [contract, setContract] = useState();
 
+    // Create new block in Blocks collection
     const handleSubmit = (e) => {
         createBlock(blockCode, parseFloat(area), parseInt(density), parseFloat(price), contract)
         e.preventDefault();
-
-        // setBlockCode('')
-        // setArea('')
-        // setDensity('')
-        // setPrice('')
-        // setContract('')
     }
 
     useEffect(() => {
 
+        // Load all blocks from database
         async function loadBlocks(){
             setBlocks(await getBlocks())
         }
 
+        // Load all contracts from database
         async function loadContracts(){
             setContracts(await getContracts())
         }

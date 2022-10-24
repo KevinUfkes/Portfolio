@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Get all contracts from Contracts collection and return JSON
 export async function getContracts(){
   const crewsResponse = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/contracts`);
     if (!crewsResponse.ok) {
@@ -11,6 +12,7 @@ export async function getContracts(){
     return contracts;
 }
 
+// Create new contract in Contracts collection
 export async function createContract(company_name, contract_code) {
   axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/contract/create`, {
     company_name: company_name,
@@ -22,6 +24,7 @@ export async function createContract(company_name, contract_code) {
   })
 }
 
+// Update contract in Contracts collection
 export async function updateContract(contract_id, company_name, contract_code, blocks) {
     axios.put(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/contract/update`, {
         _id: contract_id,
@@ -36,6 +39,7 @@ export async function updateContract(contract_id, company_name, contract_code, b
     })
 }
 
+// Delete contract by Id in Contracts collection
 export async function deleteContract(contract_id) {
     axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/contract/delete`, {
       _id: contract_id

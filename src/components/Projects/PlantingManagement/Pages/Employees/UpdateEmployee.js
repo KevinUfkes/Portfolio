@@ -24,6 +24,7 @@ function UpdateEmployee(){
     const [roles, setRoles] = useState([]);
     const [newRoles, setNewRoles] = useState([]);
 
+    // Update employee in Employees collection.
     const handleSubmit = (e) => {
         console.log("EMPLOYEE: " + JSON.stringify(employee));
 
@@ -32,6 +33,7 @@ function UpdateEmployee(){
         navigate('/projects/planting_management/employees')
     }
 
+    // Update roles array with currently checked roles.
     const handleChangeRolesCheckbox = (e) => {
         if(e.target.checked){
           newRoles.push(e.target.name)
@@ -43,6 +45,8 @@ function UpdateEmployee(){
     }
 
     useEffect(() => {
+
+        // Load all roles from Roles collection. 
         async function loadRoles(){
             setRoles(await getRoles())
         }

@@ -12,17 +12,6 @@ function PlantingManagement() {
         <>
             <div className="pm"> 
                 <PMNavigation/>
-                {/* <Navigation 
-                    bg = "dark"
-                    expand = 'lg'
-                    title = {["Planting Management", "/projects/planting_management"]}
-                    links = {[
-                        ["About", "/projects/planting_management/about"],
-                        ["Employees", "/projects/planting_management/employees"],
-                        ["Crews", "/projects/planting_management/crews"], 
-                        ["Contracts", "/projects/planting_management/contracts"],
-                      ]}
-                /> */}
                 <h1 className='pm_title'>Planting Management</h1>
                 <div className='container'>
                     

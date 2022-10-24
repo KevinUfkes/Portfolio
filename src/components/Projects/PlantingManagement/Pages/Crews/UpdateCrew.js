@@ -24,12 +24,14 @@ function UpdateCrew(){
     const planterRoleId = "6320b9ee51a8b68cfaf26c52";
     const crewbossRoleId = "6320b9fe51a8b68cfaf26c53";
 
+    // Update crew in Crews collection.
     const handleSubmit = (e) => {
         e.preventDefault();
         updateCrew(crew._id, crewName, crewboss, newPlanters)
         navigate('/projects/planting_management/crews')
     }
 
+    // Update Crew array with currently checked planters.
     const handleChangePlantersCheckbox = (e) => {
         console.log("Checked: " + e.target.checked)
         console.log("Name: " + e.target.name)

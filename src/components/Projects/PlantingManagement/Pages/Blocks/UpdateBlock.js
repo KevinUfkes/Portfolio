@@ -23,6 +23,7 @@ function UpdateBlock(){
     const [contract, setContract] = useState(block.contract);
     const [contracts, setContracts] = useState([]);
 
+    // Update block in database. Navigate to Blocks page
     const handleSubmit = (e) => {
         e.preventDefault();
         updateBlock(block._id, blockCode, parseFloat(area), parseInt(density), parseFloat(price), contract)
@@ -32,6 +33,8 @@ function UpdateBlock(){
     useEffect(() => {
 
         console.log(block)
+
+        // Load all contracts from database
         async function loadContracts(){
             setContracts(await getContracts())
         }

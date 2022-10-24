@@ -3,6 +3,7 @@ import Navigation from './../../../../Navigation/Navigation.js';
 
 function PMNavigation() {
     return(
+        // Navigation component with Portfolio links
         <Navigation 
         bg = "dark"
         expand = 'lg'

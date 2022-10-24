@@ -1,3 +1,4 @@
+// Get all roles from Roles collection and return JSON
 export async function getRoles() {
     const response = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/roles`)
     if (!response.ok) {

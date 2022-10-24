@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Get all crews from Crews collection and return JSON
 export async function getCrews(){
     const crewsResponse = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/crews`);
     
@@ -12,6 +13,7 @@ export async function getCrews(){
         return crews;
 }
 
+// Create new Crew in Crews collection
 export async function createCrew(name, crewboss, planters) {
     axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/crew/create`, {
       name: name,
@@ -23,6 +25,7 @@ export async function createCrew(name, crewboss, planters) {
     })
 }
 
+// Update crew by Id in Crews collection
 export async function updateCrew(crew_id, name, crewboss, planters) {
   axios.put(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/crew/update`, {
       _id: crew_id,
@@ -37,7 +40,7 @@ export async function updateCrew(crew_id, name, crewboss, planters) {
   })
 }
 
-
+// Delete Crew by Id in Crews collection
 export async function deleteCrew(crew_id) {
     axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/crew/delete`, {
       _id: crew_id

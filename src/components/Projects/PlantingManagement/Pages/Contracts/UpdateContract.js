@@ -21,12 +21,14 @@ function UpdateContract(){
     const [blocks, setBlocks] = useState([]);
     const [newBlocks, setNewBlocks] = useState([]);
 
+    // Update contract in Contracts collection. Navigate to Contracts page.
     const handleSubmit = (e) => {
         e.preventDefault();
         updateContract(contract._id, companyName, contractCode, newBlocks)
         navigate('/projects/planting_management/contracts')
     }
 
+    // Update blocks array with currently checked blocks. 
     const handleChangeBlocksCheckbox = (e) => {
         if(e.target.checked){
             
@@ -40,7 +42,7 @@ function UpdateContract(){
 
     useEffect(() => {
 
-        // console.log(contract)
+        // Load all blocks from Blocks collection
         async function loadBlocks(){
             setBlocks(await getBlocks())
         }

@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card';
 function CCAbout(){
     return(
         <>
+            {/* Navigation component with Credit Card Validation project links */}
             <Navigation 
                 bg = "dark"
                 expand = 'lg'

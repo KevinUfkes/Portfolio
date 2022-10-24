@@ -20,6 +20,7 @@ function Employees() {
     const [newEmail, setNewEmail] = useState([]);
     const [newRoles, setNewRoles] = useState([]);
 
+    // Create new employee in Employees collection.
     const handleSubmit = (e) => {
         createEmployee(newFirstName, newLastName, newEmail, newRoles)
         setNewFirstName('')
@@ -28,6 +29,7 @@ function Employees() {
         e.preventDefault();
     }
 
+    // Update roles array with currently checked roles.
     const handleChangeRolesCheckbox = (e) => {
       if(e.target.checked){
         newRoles.push(e.target.name)
@@ -38,10 +40,13 @@ function Employees() {
     }
 
     useEffect(() => {
+
+      // Load all employees from Employees collection
       async function loadEmployees(){
         setEmployees(await getEmployees())
       }
 
+      // Load all roles from Roles collection
       async function loadRoles(){
         setRoles(await getRoles())
       }

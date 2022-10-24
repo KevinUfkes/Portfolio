@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Get all employees from Employees collection and return JSON
 export async function getEmployees() {
     const response = await fetch(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employees`);
 
@@ -12,6 +13,7 @@ export async function getEmployees() {
     return employees
 }
 
+// Create new employee in Employees collection
 export async function createEmployee(first_name, last_name, email, roles) {
   axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employee`, {
     first_name: first_name,
@@ -25,6 +27,7 @@ export async function createEmployee(first_name, last_name, email, roles) {
   })
 }
 
+// Update employee by Id in Employees collection
 export async function updateEmployee(employee_id, first_name, last_name, email, roles, crew) {
   axios.put(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employee/update`, {
       _id: employee_id,
@@ -41,6 +44,7 @@ export async function updateEmployee(employee_id, first_name, last_name, email, 
   })
 }
 
+// Delete employee by Id in Employees collection
 export async function deleteEmployee(planter_id) {
     axios.post(`https://us-west-2.aws.data.mongodb-api.com/app/application-0-wadcn/endpoint/pm/employee/delete`, {
       _id: planter_id

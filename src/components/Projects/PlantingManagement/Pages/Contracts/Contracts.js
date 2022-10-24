@@ -18,6 +18,7 @@ function Contracts() {
   const [newCompanyName, setNewCompanyName] = useState([]);
   const [newContractCode, setNewContractCode] = useState([]);
 
+  // Create new contract in Contracts collection
   const handleSubmit = (e) => {
     createContract(newCompanyName, newContractCode)
     setNewCompanyName('')
@@ -27,10 +28,12 @@ function Contracts() {
 
   useEffect(() => {
 
+    // Load all contracts from Contracts collection
     async function loadContracts(){
         setContracts(await getContracts())
     }
 
+    // Load all blocks from Blocks collection
     async function loadBlocks(){
       setBlocks(await getBlocks())
     }

@@ -16,11 +16,13 @@ function Crews() {
     const [employees, setEmployees] = useState([])
 
     useEffect(() => {
-  
+      
+      // Load all employees from Employees collection
       async function loadEmployees(){
         setEmployees(await getEmployees())
       }
 
+      // Load all crews from Crews collection
       async function loadCrews(){
         setCrews(await getCrews())
       }
