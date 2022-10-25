@@ -73,3 +73,11 @@
   width: 80%;
   margin-bottom: 20px;
 }
+
+.main_card {
+  margin-bottom: 20px;
+}
+
+body{
+  background-color: rgb(44, 92, 134);
+}

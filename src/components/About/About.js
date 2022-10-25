@@ -1,10 +1,22 @@
 import './About.css'
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import Navigation from './../Navigation/Navigation'
 
 function About() {
     return (
         <>
+            <Navigation class="app_nav"
+            bg = "light"
+            expand = 'lg'
+            title = {["kevinufkes.ca", "/"]}
+            links = {[
+                // ["Home", "/"],
+                ["Profile", "/profile"],
+                ["About", "/about"],
+                ["Projects", "/projects"], 
+            ]}
+            />
             <div className="App">
                 <div className='container'>
                     <div className='row'>

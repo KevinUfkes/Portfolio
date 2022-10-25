@@ -11,9 +11,9 @@ function ProjectsNavigation() {
                     title = {["Projects", "/projects"]}
                     links = {[
                     // ["Lord of the Rings API", "/projects/lotr-api"], 
-                    ["Planting Management", "/projects/planting_management"],
-                    ["Credit Card Validation", "/projects/credit-card"],
-                    ["Cypress Testing", "/projects/cypress"],
+                    ["Planting Management", "/projects/planting_management", "_blank"],
+                    ["Credit Card Validation", "/projects/credit-card", "_blank"],
+                    ["Cypress Testing", "/projects/cypress", "_blank"],
                     ]}
                 />
             </div>

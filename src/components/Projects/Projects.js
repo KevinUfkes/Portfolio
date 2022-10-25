@@ -4,11 +4,23 @@ import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import credit_card from './../../images/credit_card.jpg';
 import planting_management from './../../images/planting_management.jpg'
+import Navigation from './../Navigation/Navigation'
 
 function Projects() {
     return (
       <div className="App"> 
-        <ProjectsNavigation/>
+      <Navigation class="app_nav"
+          bg = "light"
+          expand = 'lg'
+          title = {["kevinufkes.ca", "/"]}
+          links = {[
+            // ["Home", "/"],
+            ["Profile", "/profile"],
+            ["About", "/about"],
+            ["Projects", "/projects"], 
+          ]}
+        />
+        {/* <ProjectsNavigation/> */}
 
         <div className='container'>
           <div className='row'>
@@ -19,11 +31,11 @@ function Projects() {
                   <div className='row'>
                     <div className='col col-6'>
                       <h5>Planting Mangagement Application</h5>
-                        <Link to="/projects/planting_management"><img className='main_projects_img' src={planting_management}/></Link>
+                        <Link to="/projects/planting_management" target="_blank"><img className='main_projects_img' src={planting_management}/></Link>
                     </div>
                     <div className='col col-6'>
                       <h5>Credit Card Form Validation</h5>
-                      <Link to="/projects/credit-card"><img className='main_projects_img' src={credit_card}/></Link>
+                      <Link to="/projects/credit-card" target="_blank"><img className='main_projects_img' src={credit_card}/></Link>
                     </div>
                   </div>
                 </div>

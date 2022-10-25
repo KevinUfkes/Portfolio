@@ -16,7 +16,7 @@ function Navigation(props) {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
                                 {props.links.map((link) => 
-                                    <Nav.Link href={link[1]}>{link[0]}</Nav.Link>
+                                    <Nav.Link href={link[1]} target={link[2]}>{link[0]}</Nav.Link>
                                 )}
                             </Nav>
                         </Navbar.Collapse>

@@ -35,7 +35,7 @@ function App() {
   return (
     <>
       <div className="App">
-        <Navigation class="app_nav"
+        {/* <Navigation class="app_nav"
           bg = "light"
           expand = 'lg'
           title = {["kevinufkes.ca", "/"]}
@@ -45,7 +45,7 @@ function App() {
             ["About", "/about"],
             ["Projects", "/projects"], 
           ]}
-        />
+        /> */}
         <Router>
           <Routes>
             <Route path="/home" element={<Home/>}/>
