@@ -41,7 +41,7 @@ function Profile() {
                                     <Card className='main_card'>
                                         <Card.Title className='main_card_title'><h4>Professional Development</h4></Card.Title>
                                         <Card.Body>
-                                            <h5>Reforestaion</h5>
+                                            <h5>Reforestation</h5>
                                             <p>
                                                 I learned to identify what motivates me while planting trees. I planted trees for 8 years and planted over 1,000,000 trees in my career. The first five seasons I planted were very difficult.
                                                 The work was very physically demanding on its own. Coupled with working in rain, snow, high winds and heatwaves, it could be excruciating. Despite all this, I wanted to master it.
